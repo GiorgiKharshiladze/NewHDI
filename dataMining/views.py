@@ -3,5 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 
 def api(request):
+	
+	result = "Giorga"
 
-	print("API request")
+	return render(request, "index.html", {"result": result})
