@@ -1,6 +1,5 @@
 from django.shortcuts import render
-
-# import requests
+import requests
 
 # Create your views here.
 
@@ -10,7 +9,7 @@ def api(request):
 	per_page = requests.get(url=test_url).json()[0]['total']
 
 	my_url = test_url + "&per_page="+str(per_page)
-	result = requests.get(url=my_url)
+	result = requests.get(url=my_url).json()[1]
 
 	return render(request, "index.html", {"result": result})
 
