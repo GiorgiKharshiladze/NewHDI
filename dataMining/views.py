@@ -1,19 +1,35 @@
-from dataMining.models import Indicator
-from django.shortcuts import render
-import requests
+from django.shortcuts import render, get_object_or_404
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Indicator
+from .serializers import IndicatorSerializer
+
+# import requests
 
 # Create your views here.
 
 def api(request):
 	
-	result = "Giorga"
+	url = "http://127.0.0.1:8000/api/indicators/?format=json"
+
+	result = 
 
 	return render(request, "index.html", {"result": result})
 
+class IndicatorList(APIView):
 
-# ====================================
-# Fill in the indicators to local db
-# ====================================
+	def get(self, request):
+
+		indicators = Indicator.objects.all()
+		serializer = IndicatorSerializer(indicators, many=True)
+
+		return Response(serializer.data)
+
+
+# ============================================
+# REMOVED: Fill in the indicators to local db
+# ============================================
 # def fill_indicators_table(request):
 
 # 	test_url = "http://api.worldbank.org/v2/indicators?format=json"
