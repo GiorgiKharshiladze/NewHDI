@@ -11,20 +11,13 @@ from .serializers import IndicatorSerializer
 
 def api(request):
 	
-	url = "http://127.0.0.1:8000/api/indicators/?format=json"
+	test_url = "http://api.worldbank.org/v2/indicators?format=json"
+	per_page = requests.get(url=test_url).json()[0]['total']
 
-	result = 
+	my_url = test_url + "&per_page="+str(per_page)
+	result = requests.get(url=my_url)
 
 	return render(request, "index.html", {"result": result})
-
-class IndicatorList(APIView):
-
-	def get(self, request):
-
-		indicators = Indicator.objects.all()
-		serializer = IndicatorSerializer(indicators, many=True)
-
-		return Response(serializer.data)
 
 
 # ============================================
