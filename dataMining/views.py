@@ -11,6 +11,7 @@ def api(request):
 	my_url = test_url + "&per_page="+str(per_page)
 	result = requests.get(url=my_url).json()[1]
 
+
 	return render(request, "index.html", {"result": result})
 
 
