@@ -19,5 +19,5 @@ from django.conf.urls import *
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include('dataMining.urls')),
-    # url(r'^', include('website.urls'))
+    url(r'^', include('website.urls'))
 ]

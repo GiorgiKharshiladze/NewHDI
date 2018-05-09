@@ -12,7 +12,7 @@ def api(request):
 	result = requests.get(url=my_url).json()[1]
 
 
-	return render(request, "index.html", {"result": result})
+	return render(request, "api.html", {"result": result})
 
 
 # ============================================
