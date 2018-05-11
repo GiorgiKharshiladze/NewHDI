@@ -1,21 +1,21 @@
 function exists(element) {
 
+		var bool = false;
+
 		element.find('li').each(function(){
-			// console.log($(this).text());
-			// console.log($( "#indicators option:selected" ).text());
+
 			if($(this).text() == $( "#indicators option:selected" ).text()) {
-				console.log("Giorgi");
-				return true;
+				bool = true;
+				return bool;
 			}
 		});
-		return false;
+		return bool;
 }
 
 $( "#add" ).click(function() {
-	exists($("#formula"));
-	// if(!exists($("#formula"))) {
-		$("#formula").append('<li class="list-group-item">'+ $( "#indicators option:selected" ).text() +'</li>');
-	// }
 	console.log(exists($("#formula")));
+	if(exists($("#formula")) != true) {
+		$("#formula").append('<li class="list-group-item">'+ $( "#indicators option:selected" ).text() +'</li>');
+	}
 
 });
