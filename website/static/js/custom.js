@@ -13,7 +13,7 @@ function exists(element) {
 }
 
 $( "#add" ).click(function() {
-	if(exists($("#formula")) != true) {
+	if(!exists($("#formula"))) {
 		$("#formula").append('<li class="list-group-item">'+ $( "#indicators option:selected" ).text() +'</li>');
 	}
 
