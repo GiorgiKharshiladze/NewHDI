@@ -5,7 +5,7 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
 	url(r'^result/$', views.preMine, name='result'),
-	url(r'^(?P<id>[\w\-.]+)/$', views.getIndicator, name='getIndicator'),
+	url(r'^(?P<id>[\w\-.]+)/(?P<year>[0-9]{4})/$', views.getIndicator, name='getIndicator'),
 	# url(r'^indicators/$', views.IndicatorList.as_view(), name='indicators'),
 	# url(r'^fill/indicators/$', views.fill_indicators_table, name="fill_indicatos")
 ]

@@ -5,7 +5,8 @@ import sys
 
 BASE_URL = "http://api.worldbank.org/v2/"
 
-def validate(url): # Checks if data exists on this url
+def validate(url): 
+#   Checks if data exists on this url
     result = {}
     data = requests.get(url=url).json()
     if 'total' in data[0].keys():
@@ -18,23 +19,13 @@ def validate(url): # Checks if data exists on this url
         result['exists'] = False
     return result
 
-def getRecent(id): # Gets the most recent data available (if exists)
-    temp_year = datetime.now().year
-    end_year = temp_year - 20
-    
-    while(end_year < temp_year):
-        url = BASE_URL + "countries/indicators/" + id + "?date=" + str(temp_year) + "&format=json"
-        if validate(url)['exists']:
-            return validate(url)['url']
-        temp_year -= 1
-    return False
-
-def getData(id):
+def getData(id, year):
     result = []
-    url = getRecent(id)
-    if url:
+    url = validate(BASE_URL + id + "?date=" + str(year) + "&format=json")['url']
+    if validate(url)['exists']:
         data = requests.get(url=url).json()
         for item in data[1]:
+            print(item)
             if item['countryiso3code'] != "":
                 # Just countries not aggregates
                 result.append(item)
@@ -42,9 +33,9 @@ def getData(id):
     else:
         return False # There is no data available
 
-def getMinMaxActual(id, my_country):
+def getMinMaxActual(id, my_country, year):
     
-    countries = getData(id)
+    countries = getData(id, year)
     minimum = sys.maxsize
     maximum = -sys.maxsize -1
 
@@ -59,9 +50,9 @@ def getMinMaxActual(id, my_country):
 
     return {"actual": actual,"max":maximum, "min":minimum}
 
-def calculateIndex(id, my_country):
+def calculateIndex(id, my_country, year):
 
-    data = getMinMaxActual(id, my_country)
+    data = getMinMaxActual(id, my_country, year)
     actual = data['actual']
     maximum = data['max']
     minimum = data['min']
@@ -71,4 +62,6 @@ def calculateIndex(id, my_country):
     else:
         return False # No data available
 
-print(calculateIndex("SP.DYN.LE00.IN", "GEO"))
+# getData("SP.DYN.LE00.IN", 2015)
+
+# print(calculateIndex("SP.DYN.LE00.IN", "GEO", 2015))

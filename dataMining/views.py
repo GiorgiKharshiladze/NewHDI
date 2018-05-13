@@ -15,15 +15,17 @@ def preMine(request):
 
 	return render(request, "preMine.html", {"result": result})
 
-def getIndicator(request, id):
+def getIndicator(request, id, year):
 
-	data = getData(id)
+	data = getData(id, year)
 	if data:
 		dump = json.dumps({"result": data})
 	else:
 		dump = json.dumps({"result": False}) # No data available
 
-	return HttpResponse(dump, content_type='application/json')
+
+	return render(request, "index.html", {"data": data})
+	# return HttpResponse(dump, content_type='application/json')
 
 
 # ============================================
