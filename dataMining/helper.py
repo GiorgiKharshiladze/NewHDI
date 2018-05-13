@@ -59,6 +59,16 @@ def getMinMaxActual(id, my_country):
 
     return {"actual": actual,"max":maximum, "min":minimum}
 
+def calculateIndex(id, my_country):
 
+    data = getMinMaxActual(id, my_country)
+    actual = data['actual']
+    maximum = data['max']
+    minimum = data['min']
 
-print(getMinMaxActual("SP.DYN.LE00.IN", "ASM"))
+    if actual:
+        return (actual-minimum)/(maximum-minimum) # formula to calculate index
+    else:
+        return False # No data available
+
+print(calculateIndex("SP.DYN.LE00.IN", "GEO"))
