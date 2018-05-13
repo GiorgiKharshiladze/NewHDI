@@ -1,6 +1,7 @@
 import requests
 import json
 from datetime import datetime
+import sys
 
 BASE_URL = "http://api.worldbank.org/v2/"
 
@@ -40,3 +41,30 @@ def getData(id):
         return result
     else:
         return False # There is no data available
+
+def getMin(id):
+    countries = getData(id)
+    minimum = sys.maxsize
+    for country in countries:
+        if country['value'] != None and country['value'] < minimum:
+            minimum = country['value']
+    return minimum
+
+def getMax(id):
+    countries = getData(id)
+    maximum = -sys.maxsize -1
+    for country in countries:
+        if country['value'] != None and country['value'] > maximum:
+            maximum = country['value']
+    return maximum
+
+def getActual(id, my_country):
+    countries = getData(id)
+    for country in countries:
+        if country['countryiso3code'] == my_country:
+            actual = country['value']
+            if country['value'] == None:
+                actual = 0.0
+    return actual
+
+print(getActual("SP.DYN.LE00.IN", "GEO"))
