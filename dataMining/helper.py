@@ -1,6 +1,5 @@
 import requests
 import json
-from datetime import datetime
 import sys
 
 BASE_URL = "http://api.worldbank.org/v2/"
