@@ -42,21 +42,19 @@ def getData(id):
     else:
         return False # There is no data available
 
-def getMin(id):
-    countries = getData(id)
+def getMinMax(id):
     minimum = sys.maxsize
-    for country in countries:
-        if country['value'] != None and country['value'] < minimum:
-            minimum = country['value']
-    return minimum
-
-def getMax(id):
-    countries = getData(id)
     maximum = -sys.maxsize -1
+    countries = getData(id)
+
     for country in countries:
-        if country['value'] != None and country['value'] > maximum:
-            maximum = country['value']
-    return maximum
+        if country['value'] != None:
+            if country['value'] < minimum:
+                minimum = country['value']
+
+            if country['value'] > maximum:
+                maximum = country['value']
+    return {"max":maximum, "min":minimum}
 
 def getActual(id, my_country):
     countries = getData(id)
@@ -67,4 +65,5 @@ def getActual(id, my_country):
                 actual = 0.0
     return actual
 
-print(getActual("SP.DYN.LE00.IN", "GEO"))
+
+print(getMinMax("SP.DYN.LE00.IN"))
