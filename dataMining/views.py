@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from dataMining.helper import *
 
 # Create your views here.
@@ -14,6 +15,13 @@ def preMine(request):
 
 	return render(request, "api.html", {"result": result})
 
+def getIndicator(request, id):
+
+	data = getData(id)
+	dump = json.dumps(data)
+
+	# return render(request, "index.html", {"data":data})
+	return HttpResponse(dump, content_type='application/json')
 
 
 # ============================================
