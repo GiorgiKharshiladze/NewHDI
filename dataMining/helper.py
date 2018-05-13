@@ -43,26 +43,29 @@ def getData(id):
         return False # There is no data available
 
 def getMinMax(id):
+    
+    countries = getData(id)
     minimum = sys.maxsize
     maximum = -sys.maxsize -1
-    countries = getData(id)
 
     for country in countries:
         if country['value'] != None:
             if country['value'] < minimum:
                 minimum = country['value']
-
             if country['value'] > maximum:
                 maximum = country['value']
+
     return {"max":maximum, "min":minimum}
 
 def getActual(id, my_country):
     countries = getData(id)
+
     for country in countries:
         if country['countryiso3code'] == my_country:
             actual = country['value']
             if country['value'] == None:
                 actual = 0.0
+                
     return actual
 
 
