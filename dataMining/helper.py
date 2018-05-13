@@ -21,11 +21,11 @@ def validate(url):
 
 def getData(id, year):
     result = []
-    url = validate(BASE_URL + id + "?date=" + str(year) + "&format=json")['url']
+
+    url = validate(BASE_URL + "countries/indicators/" + id + "?date=" + str(year) + "&format=json")['url']
     if validate(url)['exists']:
         data = requests.get(url=url).json()
         for item in data[1]:
-            print(item)
             if item['countryiso3code'] != "":
                 # Just countries not aggregates
                 result.append(item)
@@ -62,6 +62,4 @@ def calculateIndex(id, my_country, year):
     else:
         return False # No data available
 
-# getData("SP.DYN.LE00.IN", 2015)
-
-# print(calculateIndex("SP.DYN.LE00.IN", "GEO", 2015))
+# print(calculateIndex("SP.DYN.LE00.IN", "GEO"))

@@ -24,8 +24,8 @@ def getIndicator(request, id, year):
 		dump = json.dumps({"result": False}) # No data available
 
 
-	return render(request, "index.html", {"data": data})
-	# return HttpResponse(dump, content_type='application/json')
+	# return render(request, "index.html", {"data": data})
+	return HttpResponse(dump, content_type='application/json')
 
 
 # ============================================
