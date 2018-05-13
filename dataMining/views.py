@@ -3,7 +3,7 @@ from dataMining.helper import *
 
 # Create your views here.
 
-def api(request):
+def preMine(request):
 	
 	test_url = BASE_URL + "indicators?format=json"
 	per_page = requests.get(url=test_url).json()[0]['total']
@@ -13,6 +13,7 @@ def api(request):
 
 
 	return render(request, "api.html", {"result": result})
+
 
 
 # ============================================
