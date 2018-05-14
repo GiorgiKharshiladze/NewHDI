@@ -7,6 +7,7 @@ BASE_URL = "http://api.worldbank.org/v2/"
 def validate(url): 
 #   Checks if data exists on this url
     result = {}
+    print("Giorga")
     data = requests.get(url=url).json()
     if 'total' in data[0].keys():
         amount = data[0]['total']
@@ -47,18 +48,6 @@ def getMinMaxActual(id, my_country, year):
             if country['value'] > maximum:
                 maximum = country['value']
 
-    return {"actual": actual,"max":maximum, "min":minimum}
-
-def calculateIndex(id, my_country, year):
-
-    data = getMinMaxActual(id, my_country, year)
-    actual = data['actual']
-    maximum = data['max']
-    minimum = data['min']
-
-    if actual:
-        return (actual-minimum)/(maximum-minimum) # formula to calculate index
-    else:
-        return False # No data available
+    return {"actual": actual,"max": maximum, "min": minimum}
 
 # print(calculateIndex("SP.DYN.LE00.IN", "GEO"))

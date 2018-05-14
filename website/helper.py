@@ -6,6 +6,9 @@ import json
 # ======================
 # FROM DATA MINING
 # ======================
+
+BASE_URL = "http://api.worldbank.org/v2/"
+
 def validate(url):
 #   Checks if data exists on this url
     result = {}
@@ -35,7 +38,7 @@ def getRecentOfAll(ids):
     while(end_year < temp_year):
         urls = []
         for id in ids:
-            urls.append(BASE_URL + id + "?date=" + str(temp_year) + "&format=json")
+            urls.append(BASE_URL + "countries/indicators/"+ id + "?date=" + str(temp_year) + "&format=json")
 
         if checkList(urls, temp_year):
             return temp_year

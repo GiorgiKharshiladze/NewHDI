@@ -27,6 +27,18 @@ def getIndicator(request, id, year):
 	# return render(request, "index.html", {"data": data})
 	return HttpResponse(dump, content_type='application/json')
 
+def calculateIndex(request, id, my_country, year):
+
+    data = getMinMaxActual(id, my_country, year)
+    actual = data['actual']
+    maximum = data['max']
+    minimum = data['min']
+
+    if actual:
+        return (actual-minimum)/(maximum-minimum) # formula to calculate index
+    else:
+        return False # No data available
+
 
 # ============================================
 # REMOVED: Fill in the indicators to local db
