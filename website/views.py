@@ -1,11 +1,14 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from website.helper import *
 
 # Create your views here.
 
 def index(request):
 
-	return render(request, "index.html")
+    indicators = {"NY.GNP.PCAP.PP.KD" : "GNI per capita, PPP (constant 2011 international $)","NY.GDP.PCAP.PP.KD" : "GDP per capita, PPP (constant 2011 international $)"}
+    
+    return render(request, "main.html", {"indicators":indicators})
 
 def dashboard(request):
 
@@ -21,7 +24,7 @@ def test(request):
 
     year = getRecentOfAll(ids)
 
-    url = "http://" + request.get_host() + "/api/" + str(year) + "/" + ids[2]
+    url = "http://" + request.get_host() + "/api/" + ids[0] + "/" + str(year)
     data = requests.get(url=url).json()
 
     return render(request, "test.html", {"data":data})
