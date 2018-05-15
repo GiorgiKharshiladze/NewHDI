@@ -38,9 +38,11 @@ def getMinMaxActual(id, year, my_country):
     minimum = sys.maxsize
     maximum = -sys.maxsize -1
 
+    actual = False
+
     for country in countries:
         if country['countryiso3code'] == my_country:
-            actual = country['value'] or False
+            actual = country['value']
         if country['value'] != None:
             if country['value'] < minimum:
                 minimum = country['value']
@@ -57,7 +59,8 @@ def calculateIndex(id, year, my_country):
     minimum = data['min']
 
     if actual:
-        return (actual-minimum)/(maximum-minimum) # formula to calculate index
+        index = (actual-minimum)/(maximum-minimum) # formula to calculate index
+        return (data, index) # tuple of data and formula result sent for json conversion
     else:
         return False # No data available
 
