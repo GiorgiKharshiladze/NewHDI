@@ -20,18 +20,37 @@ def validate(url):
 
 def getData(id, year):
     result = []
+
     # IF id is invalid URL key does not exist. NEEDS TO BE FIXED
     validation = validate(BASE_URL + "countries/indicators/" + id + "?date=" + str(year) + "&format=json")
     if validation['exists']:
         if validate(validation['url'])['exists']:
             data = requests.get(url=validation['url']).json()
+
             for item in data[1]:
                 if item['countryiso3code'] != "":
                     # Just countries not aggregates
+                    item = clean(item)
                     result.append(item)
             return result
     else:
         return False # There is no data available
+
+def getMinMax(id, year):
+    
+    countries = getData(id, year)
+    if not countries:
+        return False
+
+    for country in countries:
+        if country['value'] != None:
+            if country['value'] < minimum:
+                minimum = country['value']
+            if country['value'] > maximum:
+                maximum = country['value']
+
+    return {"max": maximum, "min": minimum}
+
 
 def getInfo(id, year, my_country):
     
@@ -41,10 +60,10 @@ def getInfo(id, year, my_country):
 
     actual = False
     for country in countries:
-        if country['countryiso3code'] == my_country:
+        if country['country_id'] == my_country:
             actual = country['value']
-            name = country['country']['value']
-            indicator = country['indicator']['value']
+            name = country['country']
+            indicator = country['indicator']
         if country['value'] != None:
             if country['value'] < minimum:
                 minimum = country['value']
@@ -58,7 +77,7 @@ def getInfo(id, year, my_country):
 def calculateIndex(id, year, my_country):
 
     data = getInfo(id, year, my_country)
-    
+
     if data:    
         actual = data['actual']
         maximum = data['max']
@@ -68,5 +87,20 @@ def calculateIndex(id, year, my_country):
         return (data, index) # tuple of data and formula result sent for json conversion
     else:
         return False # No data available
+
+def clean(item):
+#   This function beautifies our json
+    item['id'] = item['indicator']['id']
+    item['indicator'] = item['indicator']['value']
+    item['country'] = item['country']['value']
+    item['country_id'] = item['countryiso3code']
+
+    # Remove
+    del item['countryiso3code']
+    del item['unit']
+    del item['obs_status']
+    del item['decimal']
+
+    return item
 
 # print(calculateIndex("SP.DYN.LE00.IN", "GEO"))
