@@ -28,7 +28,7 @@ def getIndicator(request, id, year):
 	# return render(request, "index.html", {"data": data})
 	return HttpResponse(dump, content_type='application/json')
 
-def getIndex(request, id, year, my_country):
+def getCountry(request, id, year, my_country):
 
 	data = getInfo(id, year, my_country)
 

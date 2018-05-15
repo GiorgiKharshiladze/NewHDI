@@ -53,7 +53,7 @@ def getCleanData(id, year):
     for country in countries:
         country = clean(country)
         if country['value']:
-            country['index'] = calculator(country['value'], maximum, minimum)
+            country['index'] = calculate(country['value'], maximum, minimum)
         else:
             country['index'] = None
 
@@ -70,7 +70,7 @@ def getInfo(id, year, my_country):
             return country
     return False
 
-def calculator(actual, maximum, minimum):
+def calculate(actual, maximum, minimum):
     # We can have separate special cases here i.e LOG, Education etc.
     formula = (actual-minimum)/(maximum-minimum)
 
