@@ -43,13 +43,15 @@ def getInfo(id, year, my_country):
     for country in countries:
         if country['countryiso3code'] == my_country:
             actual = country['value']
+            name = country['country']['value']
+            indicator = country['indicator']['value']
         if country['value'] != None:
             if country['value'] < minimum:
                 minimum = country['value']
             if country['value'] > maximum:
                 maximum = country['value']
 
-    return { "actual": actual, "max": maximum, "min": minimum }
+    return {"id": id, "indicator": indicator, "country": name, "date": year, "actual": actual, "max": maximum, "min": minimum }
 
 def calculateIndex(id, year, my_country):
 

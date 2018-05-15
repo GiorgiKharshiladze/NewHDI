@@ -33,9 +33,9 @@ def getIndex(request, id, year, my_country):
 	data = calculateIndex(id, year, my_country)
 
 	if data:
-		actminmax = calculateIndex(id, year, my_country)[0]
+		info = calculateIndex(id, year, my_country)[0]
 		index = calculateIndex(id, year, my_country)[1]
-		dump = json.dumps({"result": {"data": actminmax, "index": index}})
+		dump = json.dumps({"result": {"data": info, "index": index}})
 	else:
 		dump = json.dumps({"result": False})
 
