@@ -21,14 +21,15 @@ def validate(url):
 def getData(id, year):
     result = []
     # IF id is invalid URL key does not exist. NEEDS TO BE FIXED
-    url = validate(BASE_URL + "countries/indicators/" + id + "?date=" + str(year) + "&format=json")['url']
-    if validate(url)['exists']:
-        data = requests.get(url=url).json()
-        for item in data[1]:
-            if item['countryiso3code'] != "":
-                # Just countries not aggregates
-                result.append(item)
-        return result
+    validation = validate(BASE_URL + "countries/indicators/" + id + "?date=" + str(year) + "&format=json")
+    if validation['exists']:
+        if validate(validation['url'])['exists']:
+            data = requests.get(url=validation['url']).json()
+            for item in data[1]:
+                if item['countryiso3code'] != "":
+                    # Just countries not aggregates
+                    result.append(item)
+            return result
     else:
         return False # There is no data available
 
@@ -39,7 +40,6 @@ def getInfo(id, year, my_country):
     maximum = -sys.maxsize -1
 
     actual = False
-
     for country in countries:
         if country['countryiso3code'] == my_country:
             actual = country['value']
@@ -50,18 +50,21 @@ def getInfo(id, year, my_country):
                 minimum = country['value']
             if country['value'] > maximum:
                 maximum = country['value']
+    if not actual:
+        return False
 
     return {"id": id, "indicator": indicator, "country": name, "date": year, "actual": actual, "max": maximum, "min": minimum }
 
 def calculateIndex(id, year, my_country):
 
     data = getInfo(id, year, my_country)
-    actual = data['actual']
-    maximum = data['max']
-    minimum = data['min']
-
-    if actual:
+    
+    if data:    
+        actual = data['actual']
+        maximum = data['max']
+        minimum = data['min']
         index = (actual-minimum)/(maximum-minimum) # formula to calculate index
+
         return (data, index) # tuple of data and formula result sent for json conversion
     else:
         return False # No data available
