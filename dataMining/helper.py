@@ -20,7 +20,7 @@ def validate(url):
 
 def getData(id, year):
     result = []
-
+    # IF id is invalid URL key does not exist. NEEDS TO BE FIXED
     url = validate(BASE_URL + "countries/indicators/" + id + "?date=" + str(year) + "&format=json")['url']
     if validate(url)['exists']:
         data = requests.get(url=url).json()
@@ -32,7 +32,7 @@ def getData(id, year):
     else:
         return False # There is no data available
 
-def getMinMaxActual(id, year, my_country):
+def getInfo(id, year, my_country):
     
     countries = getData(id, year)
     minimum = sys.maxsize
@@ -53,7 +53,7 @@ def getMinMaxActual(id, year, my_country):
 
 def calculateIndex(id, year, my_country):
 
-    data = getMinMaxActual(id, year, my_country)
+    data = getInfo(id, year, my_country)
     actual = data['actual']
     maximum = data['max']
     minimum = data['min']
