@@ -30,31 +30,35 @@ def getData(id, year):
             for item in data[1]:
                 if item['countryiso3code'] != "":
                     # Just countries not aggregates
-                    item = clean(item)
                     result.append(item)
             return result
     else:
         return False # There is no data available
 
-def getMinMax(id, year):
-    
+def getCleanData(id, year):
+
+    minmax = []
     countries = getData(id, year)
-    if not countries:
-        return False
+
+    for i in countries:
+        if i['value']:
+            minmax.append(i['value'])
+
+    minimum = min(minmax)
+    maximum = max(minmax)
 
     for country in countries:
-        if country['value'] != None:
-            if country['value'] < minimum:
-                minimum = country['value']
-            if country['value'] > maximum:
-                maximum = country['value']
+        country = clean(country)
+        if country['value']:
+            country['index'] = (country['value'] - minimum)/(maximum - minimum)
+        else:
+            country['index'] = None
 
-    return {"max": maximum, "min": minimum}
-
+    return countries
 
 def getInfo(id, year, my_country):
     
-    countries = getData(id, year)
+    countries = getCleanData(id, year)
     minimum = sys.maxsize
     maximum = -sys.maxsize -1
 

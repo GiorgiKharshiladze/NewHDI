@@ -17,7 +17,7 @@ def preMine(request):
 
 def getIndicator(request, id, year):
 
-	data = getData(id, year)
+	data = getCleanData(id, year)
 
 	if data:
 		dump = json.dumps({"result": data})
