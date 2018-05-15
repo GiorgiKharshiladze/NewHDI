@@ -20,7 +20,7 @@ def customHDI(request):
     for id in ids:
         url = "http://" + request.get_host() + "/api/" + id + "/" + str(year)
         temp = requests.get(url=url).json()
-        data.append(temp)
+        data.append(temp) # smaller the temp
     # Handle form data here
 
     return render(request, "custom.html", {"data":data})
