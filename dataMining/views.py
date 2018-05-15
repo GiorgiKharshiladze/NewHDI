@@ -18,6 +18,7 @@ def preMine(request):
 def getIndicator(request, id, year):
 
 	data = getData(id, year)
+
 	if data:
 		dump = json.dumps({"result": data})
 	else:
@@ -27,18 +28,16 @@ def getIndicator(request, id, year):
 	# return render(request, "index.html", {"data": data})
 	return HttpResponse(dump, content_type='application/json')
 
-def calculateIndex(request, id, my_country, year):
+def getIndex(request, id, my_country, year):
 
-    data = getMinMaxActual(id, my_country, year)
-    actual = data['actual']
-    maximum = data['max']
-    minimum = data['min']
+	data = calculateIndex(id, my_country, year)
 
-    if actual:
-        return (actual-minimum)/(maximum-minimum) # formula to calculate index
-    else:
-        return False # No data available
+	if data:
+		dump = json.dumps({"result": data})
+	else:
+		dump = json.dumps({"result": False})
 
+	return HttpResponse(dump, content_type='application/json')
 
 # ============================================
 # REMOVED: Fill in the indicators to local db

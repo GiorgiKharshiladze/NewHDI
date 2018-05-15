@@ -1,27 +1,11 @@
 from datetime import datetime
 import requests
 import json
+from dataMining.helper import validate, BASE_URL
 
-
-# ======================
-# FROM DATA MINING
-# ======================
-
-BASE_URL = "http://api.worldbank.org/v2/"
-
-def validate(url):
-#   Checks if data exists on this url
-    result = {}
-    data = requests.get(url=url).json()
-    if 'total' in data[0].keys():
-        amount = data[0]['total']
-        result['url'] = url + "&per_page=" + str(amount)
-        result['exists'] = False
-        if amount > 0 and data[1][0]['value'] != None:
-            result['exists'] = True
-    else:
-        result['exists'] = False
-    return result
+# ==========================
+# IMPORTS FROM DATA MINING
+# ==========================
 
 def checkList(urls, year):
 #   Helper for getRecentOfAll
