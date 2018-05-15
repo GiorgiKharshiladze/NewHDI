@@ -32,7 +32,7 @@ def getData(id, year):
     else:
         return False # There is no data available
 
-def getMinMaxActual(id, my_country, year):
+def getMinMaxActual(id, year, my_country):
     
     countries = getData(id, year)
     minimum = sys.maxsize
@@ -49,9 +49,9 @@ def getMinMaxActual(id, my_country, year):
 
     return { "actual": actual, "max": maximum, "min": minimum }
 
-def calculateIndex(id, my_country, year):
+def calculateIndex(id, year, my_country):
 
-    data = getMinMaxActual(id, my_country, year)
+    data = getMinMaxActual(id, year, my_country)
     actual = data['actual']
     maximum = data['max']
     minimum = data['min']
