@@ -30,12 +30,10 @@ def getIndicator(request, id, year):
 
 def getIndex(request, id, year, my_country):
 
-	data = calculateIndex(id, year, my_country)
+	data = getInfo(id, year, my_country)
 
 	if data:
-		info = calculateIndex(id, year, my_country)[0]
-		index = calculateIndex(id, year, my_country)[1]
-		dump = json.dumps({"result": {"data": info, "index": index}})
+		dump = json.dumps({"result": data})
 	else:
 		dump = json.dumps({"result": False})
 

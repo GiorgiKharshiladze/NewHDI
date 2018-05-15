@@ -40,6 +40,9 @@ def getCleanData(id, year):
     minmax = []
     countries = getData(id, year)
 
+    if not countries:
+        return False
+
     for i in countries:
         if i['value']:
             minmax.append(i['value'])
@@ -59,38 +62,14 @@ def getCleanData(id, year):
 def getInfo(id, year, my_country):
     
     countries = getCleanData(id, year)
-    minimum = sys.maxsize
-    maximum = -sys.maxsize -1
-
-    actual = False
-    for country in countries:
-        if country['country_id'] == my_country:
-            actual = country['value']
-            name = country['country']
-            indicator = country['indicator']
-        if country['value'] != None:
-            if country['value'] < minimum:
-                minimum = country['value']
-            if country['value'] > maximum:
-                maximum = country['value']
-    if not actual:
+    if not countries:
         return False
 
-    return {"id": id, "indicator": indicator, "country": name, "date": year, "actual": actual, "max": maximum, "min": minimum }
+    for country in countries:
+        if country['country_id'] == my_country:
+            return country
+    return False
 
-def calculateIndex(id, year, my_country):
-
-    data = getInfo(id, year, my_country)
-
-    if data:    
-        actual = data['actual']
-        maximum = data['max']
-        minimum = data['min']
-        index = (actual-minimum)/(maximum-minimum) # formula to calculate index
-
-        return (data, index) # tuple of data and formula result sent for json conversion
-    else:
-        return False # No data available
 
 def clean(item):
 #   This function beautifies our json
