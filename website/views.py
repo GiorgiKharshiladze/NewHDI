@@ -6,9 +6,24 @@ from website.helper import *
 
 def index(request):
 
-    indicators = {"NY.GNP.PCAP.PP.KD" : "GNI per capita, PPP (constant 2011 international $)","NY.GDP.PCAP.PP.KD" : "GDP per capita, PPP (constant 2011 international $)"}
+    indicators = {"NY.GNP.PCAP.PP.KD" : "GNI per capita, PPP (constant 2011 international $)","NY.GDP.PCAP.PP.KD" : "GDP per capita, PPP (constant 2011 international $)", "SP.DYN.LE00.IN":"Life expectancy at birth, total (years)", "SE.XPD.TOTL.GD.ZS":"Government expenditure on education, total (% of GDP)", "TX.VAL.OTHR.ZS.WT":"Computer, communications and other services (% of commercial service exports)"}
     
     return render(request, "main.html", {"indicators":indicators})
+
+def customHDI(request):
+
+    ids = [request.POST.get('ind1'),request.POST.get('ind2'),request.POST.get('ind3'),request.POST.get('ind4'),request.POST.get('ind5')]
+    coefs = [request.POST.get('coef1'),request.POST.get('coef2'),request.POST.get('coef3'),request.POST.get('coef4'),request.POST.get('coef5')]
+
+    data = []
+    year = getRecentOfAll(ids)
+    for id in ids:
+        url = "http://" + request.get_host() + "/api/" + id + "/" + str(year)
+        temp = requests.get(url=url).json()
+        data.append(temp)
+    # Handle form data here
+
+    return render(request, "custom.html", {"data":data})
 
 def dashboard(request):
 
@@ -19,6 +34,8 @@ def test(request):
     # GDP per capita, PPP (constant 2011 international $) (NY.GDP.PCAP.PP.KD)
     # Life expectancy at birth, total (years) (SP.DYN.LE00.IN)
     # UIS: Mean years of schooling of the population age 25+. Male (UIS.EA.MEAN.1T6.AG25T99.M) - NOT AVAILABLE
+    # Government expenditure on education, total (% of GDP) (SE.XPD.TOTL.GD.ZS)
+    # Computer, communications and other services (% of commercial service exports) (TX.VAL.OTHR.ZS.WT)
 
     ids = ["NY.GDP.PCAP.PP.KD","SP.DYN.LE00.IN","NY.GNP.PCAP.PP.KD"]
 
