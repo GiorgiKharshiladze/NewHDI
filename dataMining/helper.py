@@ -57,6 +57,8 @@ def getCleanData(id, year):
         else:
             country['index'] = None
 
+    countries.append("Giorgi")
+
     return countries
 
 def getInfo(id, year, my_country):
