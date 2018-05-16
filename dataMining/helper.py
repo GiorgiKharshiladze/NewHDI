@@ -57,7 +57,7 @@ def getCleanData(id, year):
         else:
             country['index'] = None
 
-    countries.append("Giorgi")
+    # countries.append("Giorgi")
 
     return countries
 
