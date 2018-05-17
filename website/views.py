@@ -7,7 +7,7 @@ import urllib.request
 
 def index(request):
 
-    indicators = {"NY.GNP.PCAP.PP.KD" : "GNI per capita, PPP (constant 2011 international $)","NY.GDP.PCAP.PP.KD" : "GDP per capita, PPP (constant 2011 international $)", "SP.DYN.LE00.IN":"Life expectancy at birth, total (years)", "SE.XPD.TOTL.GD.ZS":"Government expenditure on education, total (% of GDP)", "TX.VAL.OTHR.ZS.WT":"Computer, communications and other services (% of commercial service exports)"}
+    indicators = {"NY.GNP.PCAP.PP.KD" : "GNI per capita, PPP (constant 2011 international $)","NY.GDP.PCAP.PP.KD" : "GDP per capita, PPP (constant 2011 international $)", "SP.DYN.LE00.IN":"Life expectancy at birth, total (years)", "SE.XPD.TOTL.GD.ZS":"Government expenditure on education, total (% of GDP)", "TX.VAL.OTHR.ZS.WT":"Computer, communications and other services (% of commercial service exports)", "EG.ELC.ACCS.ZS":"Access to electricity (% of population)", "NY.ADJ.NNTY.PC.KD":"Adjusted net national income per capita (constant 2010 US$)", "MS.MIL.TOTL.P1":"Armed forces personnel, total", "FB.CBK.BRCH.P5":"Commercial bank branches (per 100,000 adults)", "SP.REG.BRTH.ZS":"Completeness of birth registration (%)", "SE.COM.DURS":"Compulsory education, duration (years)"}
     
     return render(request, "main.html", {"indicators":indicators})
 
@@ -50,6 +50,12 @@ def test(request):
     # UIS: Mean years of schooling of the population age 25+. Male (UIS.EA.MEAN.1T6.AG25T99.M) - NOT AVAILABLE
     # Government expenditure on education, total (% of GDP) (SE.XPD.TOTL.GD.ZS)
     # Computer, communications and other services (% of commercial service exports) (TX.VAL.OTHR.ZS.WT)
+    # Access to electricity (% of population) (EG.ELC.ACCS.ZS)
+    # Adjusted net national income per capita (constant 2010 US$) (NY.ADJ.NNTY.PC.KD)
+    # Armed forces personnel, total (MS.MIL.TOTL.P1)
+    # Commercial bank branches (per 100,000 adults) (FB.CBK.BRCH.P5)
+    # Completeness of birth registration (%) (SP.REG.BRTH.ZS)
+    # Compulsory education, duration (years) (SE.COM.DURS)
 
     ids = ["NY.GDP.PCAP.PP.KD","SP.DYN.LE00.IN","NY.GNP.PCAP.PP.KD"]
 
