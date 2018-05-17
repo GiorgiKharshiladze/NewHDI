@@ -47,23 +47,48 @@ def handleData(request, year, ids, coefs):
             result = json.loads(url.read().decode())['result']
             data.append(result)
 
-    data = beautify(data, ids)
+    data = beautify(data, ids, coefs)
+    data = available(data, ids)
+
+    data = sortFormat(data)
 
     return data
 
-def beautify(data, ids):
+def beautify(data, ids, coefs):
 
     newDict = {}
 
     for i in range(len(data)):
         for key, value in data[i].items():
             newDict[key] = {}
+            newDict[key]['final'] = 1
 
     for i in range(len(data)):
         for key, value in data[i].items():
-            newDict[key]['country'] = data[i][key]['country'] 
+            newDict[key]['name'] = data[i][key]['country']
+            newDict[key][ids[i]] = {"value":data[i][key]['value'], "pre_assign":data[i][key]['index']**(1/float(coefs[i])), "post_assign":data[i][key]['index']}
+            newDict[key]['final'] *= newDict[key][ids[i]]['post_assign']
             #data[i][key]['country']
             #data[i][key]['value']
             #data[i][key]['index']
 
     return newDict
+
+def available(data, ids):
+    
+    for id in ids:
+        for key in list(data.keys()):
+            if id not in list(data[key].keys()):
+                del data[key]
+
+    return data
+
+def sortFormat(data):
+
+    newData = []
+    data = sorted([value['final'],value] for (key,value) in data.items())
+
+    for item in data:
+        newData.insert(0, item[1])
+
+    return newData

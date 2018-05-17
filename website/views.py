@@ -16,6 +16,8 @@ def customHDI(request):
     ids = [request.POST.get('ind1'),request.POST.get('ind2'),request.POST.get('ind3'),request.POST.get('ind4'),request.POST.get('ind5')]
     coefs = [request.POST.get('coef1'),request.POST.get('coef2'),request.POST.get('coef3'),request.POST.get('coef4'),request.POST.get('coef5')]
 
+    # TO-DO: CHECK IF any coef == 0 remove from the list
+
     year = getRecentOfAll(ids)
     
     # Handle form data here
