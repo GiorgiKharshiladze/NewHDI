@@ -46,8 +46,16 @@ def handleData(request, year, ids, coefs):
             result = json.loads(url.read().decode())['result']
             data.append(result)
 
-
+    data = beautify(data, ids)
 
     return data
 
-# def beautify(data):
+def beautify(data, ids):
+
+    newDict = {}
+
+    for i in range(len(data)):
+        for key, value in data[i].items():
+            newDict[key] = data[i][key]['country']
+
+    return newDict
