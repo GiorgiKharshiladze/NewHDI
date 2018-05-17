@@ -21,7 +21,9 @@ def customHDI(request):
     # Handle form data here
     data = handleData(request, year, ids, coefs)
 
-    return render(request, "custom.html", {"data":data})
+    dump = json.dumps({"result": data})
+    return HttpResponse(dump, content_type='application/json')
+    # return render(request, "custom.html", {"data":data})
 
 def dashboard(request):
 

@@ -52,7 +52,7 @@ def getCleanData(id, year):
     maximum = max(minmax)
 
     # Get Indicator Name
-    indicator = getIndicatorName(countries)
+    # indicator = getIndicatorName(id)
 
     for country in countries.values():
         country = clean(country)
@@ -61,7 +61,7 @@ def getCleanData(id, year):
         else:
             country['index'] = None
 
-    countries['info'] =  {"id":id, "indicator":indicator, "year":year}
+    # countries['info'] =  {"id":id, "indicator":indicator, "year":year}
 
     return countries
 
@@ -96,17 +96,15 @@ def clean(item):
 
     return item
 
-def getIndicatorName(countries):
+def getIndicatorName(id):
 
-    for key in countries:
-        return countries[key]['indicator']['value']
+    data = requests.get(url=BASE_URL + "countries/indicators/" + id + "/?format=json").json()
+    return data[1][0]['indicator']['value'] or False
+
 
 def updateIndices(countries, weight):
 
-    temp_dict = deepcopy(countries)
-    del temp_dict['info']
-
-    for key in temp_dict.keys():
+    for key in countries.keys():
         countries[key]['index'] **= float(weight)
 
     return countries

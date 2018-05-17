@@ -2,7 +2,7 @@ from datetime import datetime
 import requests
 import urllib.request
 import json
-from dataMining.helper import validate, BASE_URL
+from dataMining.helper import validate, BASE_URL, getIndicatorName
 
 # ==========================
 # IMPORTS FROM DATA MINING
@@ -46,4 +46,8 @@ def handleData(request, year, ids, coefs):
             result = json.loads(url.read().decode())['result']
             data.append(result)
 
+
+
     return data
+
+# def beautify(data):
