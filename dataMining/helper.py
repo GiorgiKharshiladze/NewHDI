@@ -50,6 +50,8 @@ def getCleanData(id, year):
     minimum = min(minmax)
     maximum = max(minmax)
 
+    indicator = countries[0]['indicator']['value']
+
     for country in countries:
         country = clean(country)
         if country['value']:
@@ -57,7 +59,7 @@ def getCleanData(id, year):
         else:
             country['index'] = None
 
-    countries.insert(0, "Giorgi")
+    countries.insert(0, {"id":id, "indicator":indicator, "year":year})
 
     return countries
 
@@ -67,7 +69,7 @@ def getInfo(id, year, my_country):
     if not countries:
         return False
 
-    for country in countries:
+    for country in countries[1:]:
         if country['country_id'] == my_country:
             return country
     return False
@@ -80,12 +82,14 @@ def calculate(actual, maximum, minimum):
 
 def clean(item):
 #   This function beautifies our json
-    item['id'] = item['indicator']['id']
-    item['indicator'] = item['indicator']['value']
+    # item['id'] = item['indicator']['id']
+    # item['indicator'] = item['indicator']['value']
     item['country'] = item['country']['value']
     item['country_id'] = item['countryiso3code']
 
     # Remove
+    del item['date']
+    del item['indicator']
     del item['countryiso3code']
     del item['unit']
     del item['obs_status']
