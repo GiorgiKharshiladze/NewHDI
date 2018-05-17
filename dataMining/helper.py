@@ -19,7 +19,7 @@ def validate(url):
     return result
 
 def getData(id, year):
-    result = []
+    result = {}
 
     # IF id is invalid URL key does not exist. NEEDS TO BE FIXED
     validation = validate(BASE_URL + "countries/indicators/" + id + "?date=" + str(year) + "&format=json")
@@ -30,7 +30,7 @@ def getData(id, year):
             for item in data[1]:
                 if item['countryiso3code'] != "":
                     # Just countries not aggregates
-                    result.append(item)
+                    result[item['countryiso3code']] = item
             return result
     else:
         return False # There is no data available
@@ -43,23 +43,24 @@ def getCleanData(id, year):
     if not countries:
         return False
 
-    for i in countries:
+    for i in countries.values():
         if i['value']:
             minmax.append(i['value'])
 
     minimum = min(minmax)
     maximum = max(minmax)
 
-    indicator = countries[0]['indicator']['value']
+    # Get Indicator Name
+    indicator = countries["AFG"]['indicator']['value']
 
-    for country in countries:
+    for country in countries.values():
         country = clean(country)
         if country['value']:
             country['index'] = calculate(country['value'], maximum, minimum)
         else:
             country['index'] = None
 
-    countries.insert(0, {"id":id, "indicator":indicator, "year":year})
+    countries['info'] =  {"id":id, "indicator":indicator, "year":year}
 
     return countries
 
@@ -69,10 +70,7 @@ def getInfo(id, year, my_country):
     if not countries:
         return False
 
-    for country in countries[1:]:
-        if country['country_id'] == my_country:
-            return country
-    return False
+    return countries.get(my_country, False)
 
 def calculate(actual, maximum, minimum):
     # We can have separate special cases here i.e LOG, Education etc.
@@ -85,7 +83,7 @@ def clean(item):
     # item['id'] = item['indicator']['id']
     # item['indicator'] = item['indicator']['value']
     item['country'] = item['country']['value']
-    item['country_id'] = item['countryiso3code']
+    # item['country_id'] = item['countryiso3code']
 
     # Remove
     del item['date']

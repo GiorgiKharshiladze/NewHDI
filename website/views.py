@@ -22,7 +22,7 @@ def customHDI(request):
     # Handle form data here
     result = handleData(ids, coefs)
 
-    return render(request, "custom.html", {"data":data})
+    return render(request, "custom.html", {"data":result})
 
 def dashboard(request):
 
