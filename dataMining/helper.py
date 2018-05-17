@@ -29,7 +29,7 @@ def getData(id, year):
 
             for item in data[1]:
                 if item['countryiso3code'] != "" and item['value'] != None:
-                    # Just countries not aggregates
+                    # Just countries not aggregates and only those which data exists
                     result[item['countryiso3code']] = item
             return result
     else:
