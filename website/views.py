@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from website.helper import *
+import urllib.request
 
 # Create your views here.
 
@@ -18,9 +19,11 @@ def customHDI(request):
     data = []
     year = getRecentOfAll(ids)
     for id in ids:
-        url = "http://" + request.get_host() + "/api/" + id + "/" + str(year)
-        temp = requests.get(url=url).json()
-        data.append(temp) # smaller the temp
+        my_url = "http://" + request.get_host() + "/api/" + id + "/" + str(year)
+        # temp = requests.get(url=url).json()
+        with urllib.request.urlopen(my_url) as url:
+            temp = json.loads(url.read().decode())
+            data.append(temp)
     # Handle form data here
 
     return render(request, "custom.html", {"data":data})
