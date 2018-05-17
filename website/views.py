@@ -16,16 +16,10 @@ def customHDI(request):
     ids = [request.POST.get('ind1'),request.POST.get('ind2'),request.POST.get('ind3'),request.POST.get('ind4'),request.POST.get('ind5')]
     coefs = [request.POST.get('coef1'),request.POST.get('coef2'),request.POST.get('coef3'),request.POST.get('coef4'),request.POST.get('coef5')]
 
-    data = []
     year = getRecentOfAll(ids)
     
     # Handle form data here
-    for id in ids:
-        my_url = "http://" + request.get_host() + "/api/" + id + "/" + str(year)
-        # temp = requests.get(url=url).json()
-        with urllib.request.urlopen(my_url) as url:
-            temp = json.loads(url.read().decode())
-            data.append(temp)
+    data = handleData(request, year, ids, coefs)
 
     return render(request, "custom.html", {"data":data})
 
