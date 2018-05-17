@@ -7,7 +7,9 @@ import urllib.request
 
 def index(request):
 
-    indicators = {"NY.GNP.PCAP.PP.KD" : "GNI per capita, PPP (constant 2011 international $)","NY.GDP.PCAP.PP.KD" : "GDP per capita, PPP (constant 2011 international $)", "SP.DYN.LE00.IN":"Life expectancy at birth, total (years)", "SE.XPD.TOTL.GD.ZS":"Government expenditure on education, total (% of GDP)", "TX.VAL.OTHR.ZS.WT":"Computer, communications and other services (% of commercial service exports)", "EG.ELC.ACCS.ZS":"Access to electricity (% of population)", "NY.ADJ.NNTY.PC.KD":"Adjusted net national income per capita (constant 2010 US$)", "MS.MIL.TOTL.P1":"Armed forces personnel, total", "FB.CBK.BRCH.P5":"Commercial bank branches (per 100,000 adults)", "SP.REG.BRTH.ZS":"Completeness of birth registration (%)", "SE.COM.DURS":"Compulsory education, duration (years)"}
+    indicators = {"NY.GNP.PCAP.PP.KD" : "GNI per capita, PPP (constant 2011 international $)","NY.GDP.PCAP.PP.KD" : "GDP per capita, PPP (constant 2011 international $)", "SP.DYN.LE00.IN":"Life expectancy at birth, total (years)", "SE.XPD.TOTL.GD.ZS":"Government expenditure on education, total (% of GDP)", "TX.VAL.OTHR.ZS.WT":"Computer, communications and other services (% of commercial service exports)", "EG.ELC.ACCS.ZS":"Access to electricity (% of population)", "FB.CBK.BRCH.P5":"Commercial bank branches (per 100,000 adults)"}
+
+    # "NY.ADJ.NNTY.PC.KD":"Adjusted net national income per capita (constant 2010 US$)", "MS.MIL.TOTL.P1":"Armed forces personnel, total", "SP.REG.BRTH.ZS":"Completeness of birth registration (%)", "SE.COM.DURS":"Compulsory education, duration (years)"
     
     return render(request, "main.html", {"indicators":indicators})
 
