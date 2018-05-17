@@ -28,7 +28,7 @@ def getData(id, year):
             data = requests.get(url=validation['url']).json()
 
             for item in data[1]:
-                if item['countryiso3code'] != "":
+                if item['countryiso3code'] != "" and item['value'] != None:
                     # Just countries not aggregates
                     result[item['countryiso3code']] = item
             return result
