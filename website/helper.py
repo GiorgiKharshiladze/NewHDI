@@ -40,11 +40,10 @@ def handleData(request, year, ids, coefs):
         my_id = ids[i]
         my_weight = coefs[i]
 
-        my_url = "http://" + request.get_host() + "/api/" + my_id + "/" + str(year)
+        my_url = "http://" + request.get_host() + "/api/" + my_id + "/" + str(year) + "/" + str(my_weight)
         # temp = requests.get(url=url).json()
         with urllib.request.urlopen(my_url) as url:
             result = json.loads(url.read().decode())['result']
-            temp = updateIndices(result, my_weight)
-            data.append(temp)
+            data.append(result)
 
     return data
