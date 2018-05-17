@@ -1,6 +1,7 @@
 import requests
 import json
 import sys
+from copy import deepcopy
 
 BASE_URL = "http://api.worldbank.org/v2/"
 
@@ -64,13 +65,13 @@ def getCleanData(id, year):
 
     return countries
 
-def getInfo(id, year, my_country):
+def getInfo(id, year, my_weight):
     
     countries = getCleanData(id, year)
     if not countries:
         return False
 
-    return countries.get(my_country, False)
+    return updateIndices(countries, my_weight)
 
 def calculate(actual, maximum, minimum):
     # We can have separate special cases here i.e LOG, Education etc.
@@ -99,5 +100,15 @@ def getIndicatorName(countries):
 
     for key in countries:
         return countries[key]['indicator']['value']
+
+def updateIndices(countries, weight):
+
+    temp_dict = deepcopy(countries)
+    del temp_dict['info']
+
+    for key in temp_dict.keys():
+        countries[key]['index'] **= float(weight)
+
+    return countries
 
 # print(calculateIndex("SP.DYN.LE00.IN", "GEO"))

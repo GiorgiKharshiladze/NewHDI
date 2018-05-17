@@ -28,9 +28,9 @@ def getIndicator(request, id, year):
 	# return render(request, "index.html", {"data": data})
 	return HttpResponse(dump, content_type='application/json')
 
-def getCountry(request, id, year, my_country):
+def getValue(request, id, year, my_weight):
 
-	data = getInfo(id, year, my_country)
+	data = getInfo(id, year, my_weight)
 
 	if data:
 		dump = json.dumps({"result": data})

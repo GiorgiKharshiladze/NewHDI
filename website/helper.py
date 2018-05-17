@@ -2,7 +2,6 @@ from datetime import datetime
 import requests
 import urllib.request
 import json
-from copy import deepcopy
 from dataMining.helper import validate, BASE_URL
 
 # ==========================
@@ -49,13 +48,3 @@ def handleData(request, year, ids, coefs):
             data.append(temp)
 
     return data
-
-def updateIndices(result, weight):
-
-    temp_dict = deepcopy(result)
-    del temp_dict['info']
-
-    for key in temp_dict.keys():
-        result[key]['index'] **= float(weight)
-
-    return result
