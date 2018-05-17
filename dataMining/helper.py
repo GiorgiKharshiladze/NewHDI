@@ -51,7 +51,7 @@ def getCleanData(id, year):
     maximum = max(minmax)
 
     # Get Indicator Name
-    indicator = countries["AFG"]['indicator']['value']
+    indicator = getIndicatorName(countries)
 
     for country in countries.values():
         country = clean(country)
@@ -94,5 +94,10 @@ def clean(item):
     del item['decimal']
 
     return item
+
+def getIndicatorName(countries):
+
+    for key in countries:
+        return countries[key]['indicator']['value']
 
 # print(calculateIndex("SP.DYN.LE00.IN", "GEO"))

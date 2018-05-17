@@ -1,5 +1,6 @@
 from datetime import datetime
 import requests
+import urllib.request
 import json
 from dataMining.helper import validate, BASE_URL
 
@@ -31,11 +32,9 @@ def getRecentOfAll(ids):
     return False
 
 
-def handleData(ids, coefs):
+def handleData(request, year, ids, coefs):
 
-    for id in ids:
-        my_url = "http://" + request.get_host() + "/api/" + id + "/" + str(year)
-        # temp = requests.get(url=url).json()
-        with urllib.request.urlopen(my_url) as url:
-            temp = json.loads(url.read().decode())
-            data.append(temp)
+    data = []
+
+
+    return data
