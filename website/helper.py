@@ -29,3 +29,13 @@ def getRecentOfAll(ids):
         temp_year -= 1
         
     return False
+
+
+def handleData(ids, coefs):
+
+    for id in ids:
+        my_url = "http://" + request.get_host() + "/api/" + id + "/" + str(year)
+        # temp = requests.get(url=url).json()
+        with urllib.request.urlopen(my_url) as url:
+            temp = json.loads(url.read().decode())
+            data.append(temp)

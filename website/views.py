@@ -18,13 +18,9 @@ def customHDI(request):
 
     data = []
     year = getRecentOfAll(ids)
-    for id in ids:
-        my_url = "http://" + request.get_host() + "/api/" + id + "/" + str(year)
-        # temp = requests.get(url=url).json()
-        with urllib.request.urlopen(my_url) as url:
-            temp = json.loads(url.read().decode())
-            data.append(temp)
+    
     # Handle form data here
+    result = handleData(ids, coefs)
 
     return render(request, "custom.html", {"data":data})
 
