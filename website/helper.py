@@ -66,8 +66,8 @@ def beautify(data, ids, coefs):
     for i in range(len(data)):
         for key, value in data[i].items():
             newDict[key]['name'] = data[i][key]['country']
-            newDict[key]['id_'+str(i+1)] = {"id":ids[i],"value":data[i][key]['value'], "pre_assign":data[i][key]['index']**(1/float(coefs[i])), "post_assign":data[i][key]['index']}
-            newDict[key]['final'] *= newDict[key]['id_'+str(i+1)]['post_assign']
+            newDict[key]['id_'+str(i)] = {"id":ids[i],"value":data[i][key]['value'], "pre_assign":data[i][key]['index']**(1/float(coefs[i])), "post_assign":data[i][key]['index']}
+            newDict[key]['final'] *= newDict[key]['id_'+str(i)]['post_assign']
             #data[i][key]['country']
             #data[i][key]['value']
             #data[i][key]['index']
