@@ -3,6 +3,7 @@ import requests
 import urllib.request
 import json
 from dataMining.helper import validate, BASE_URL, getIndicatorName
+from collections import defaultdict
 
 # ==========================
 # IMPORTS FROM DATA MINING
@@ -56,6 +57,13 @@ def beautify(data, ids):
 
     for i in range(len(data)):
         for key, value in data[i].items():
-            newDict[key] = data[i][key]['country']
+            newDict[key] = {}
+
+    for i in range(len(data)):
+        for key, value in data[i].items():
+            newDict[key]['country'] = data[i][key]['country'] 
+            #data[i][key]['country']
+            #data[i][key]['value']
+            #data[i][key]['index']
 
     return newDict
