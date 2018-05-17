@@ -16,6 +16,18 @@ def customHDI(request):
     ids = [request.POST.get('ind1'),request.POST.get('ind2'),request.POST.get('ind3'),request.POST.get('ind4'),request.POST.get('ind5')]
     coefs = [request.POST.get('coef1'),request.POST.get('coef2'),request.POST.get('coef3'),request.POST.get('coef4'),request.POST.get('coef5')]
 
+    id_one   = ids[0]
+    id_two   = ids[1]
+    id_three = ids[2]
+    id_four  = ids[3]
+    id_five  = ids[4]
+
+    coef_one   = coefs[0]
+    coef_two   = coefs[1]
+    coef_three = coefs[2]
+    coef_four  = coefs[3]
+    coef_five  = coefs[4]
+
     # TO-DO: CHECK IF any coef == 0 remove from the list
 
     year = getRecentOfAll(ids)
@@ -25,7 +37,7 @@ def customHDI(request):
 
     dump = json.dumps({"result": data})
     return HttpResponse(dump, content_type='application/json')
-    # return render(request, "custom.html", {"data":data})
+    # return render(request, "custom.html", {"id_one":id_one,"id_two":id_two,"id_three":id_three,"id_four":id_four,"id_five":id_five, "coef_one":coef_one, "coef_two":coef_two, "coef_three":coef_three, "coef_four":coef_four, "coef_five":coef_five,"data":data})
 
 def dashboard(request):
 

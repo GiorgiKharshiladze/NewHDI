@@ -66,8 +66,8 @@ def beautify(data, ids, coefs):
     for i in range(len(data)):
         for key, value in data[i].items():
             newDict[key]['name'] = data[i][key]['country']
-            newDict[key][ids[i]] = {"value":data[i][key]['value'], "pre_assign":data[i][key]['index']**(1/float(coefs[i])), "post_assign":data[i][key]['index']}
-            newDict[key]['final'] *= newDict[key][ids[i]]['post_assign']
+            newDict[key]['id_'+str(i+1)] = {"id":ids[i],"value":data[i][key]['value'], "pre_assign":data[i][key]['index']**(1/float(coefs[i])), "post_assign":data[i][key]['index']}
+            newDict[key]['final'] *= newDict[key]['id_'+str(i+1)]['post_assign']
             #data[i][key]['country']
             #data[i][key]['value']
             #data[i][key]['index']
@@ -76,9 +76,9 @@ def beautify(data, ids, coefs):
 
 def available(data, ids):
     
-    for id in ids:
+    for i in range(len(ids)):
         for key in list(data.keys()):
-            if id not in list(data[key].keys()):
+            if "id_"+str(i) not in list(data[key].keys()):
                 del data[key]
 
     return data
