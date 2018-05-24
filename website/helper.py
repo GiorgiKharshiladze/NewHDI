@@ -86,9 +86,10 @@ def available(data, ids):
 def sortFormat(data):
 
     newData = []
-    data = ([value['final'],value] for (key,value) in data.items())
 
-    for item in data:
-        newData.insert(0, item[1])
+    sorted_keys = sorted((value['final'], key) for (key,value) in data.items())
+
+    for i in sorted_keys:
+        newData.insert(0, data[i[1]])
 
     return newData
