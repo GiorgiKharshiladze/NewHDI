@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.db import connection
 from dataMining.helper import *
 
 # Create your views here.
@@ -38,6 +39,19 @@ def getValue(request, id, year, my_weight):
 		dump = json.dumps({"result": False})
 
 	return HttpResponse(dump, content_type='application/json')
+
+def getLocal(request, my_id):
+
+	cursor = connection.cursor()
+
+	cursor.execute("SELECT my_id, name, description, source FROM indicators WHERE my_id='" + my_id + "'")
+	row = cursor.fetchone()
+
+	dump = json.dumps({"result": row})
+
+	return HttpResponse(dump, content_type='application/json')
+
+
 
 # ============================================
 # REMOVED: Fill in the indicators to local db
