@@ -61,7 +61,10 @@ def getLocalIds(request):
 @api_view(['GET', 'POST'])
 def getLocal(request, my_id):
 
-	indicator = Indicator.objects.get(my_id=my_id)
+	try:
+		indicator = Indicator.objects.get(my_id=my_id)
+	except Indicator.DoesNotExist:
+		return HttpResponse(json.dumps({"result": False}), content_type='application/json')
 
 	serializer = IndicatorSerializer(indicator)
 
