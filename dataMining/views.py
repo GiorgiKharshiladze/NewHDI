@@ -1,7 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.db import connection
-from dataMining.helper import *
+
+# local improts
+from .helper import *
+from .serializers import *
+from .models import *
+
+# rest_framework
+from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 
 # Create your views here.
 
@@ -40,16 +49,15 @@ def getValue(request, id, year, my_weight):
 
 	return HttpResponse(dump, content_type='application/json')
 
+
+@api_view(['GET', 'POST'])
 def getLocal(request, my_id):
 
-	cursor = connection.cursor()
+	indicator = Indicator.objects.get(my_id=my_id)
 
-	cursor.execute("SELECT my_id, name, description, source FROM indicators WHERE my_id='" + my_id + "'")
-	row = cursor.fetchone()
+	serializer = IndicatorSerializer(indicator)
 
-	dump = json.dumps({"result": row})
-
-	return HttpResponse(dump, content_type='application/json')
+	return Response(serializer.data)
 
 
 
