@@ -49,6 +49,14 @@ def getValue(request, id, year, my_weight):
 
 	return HttpResponse(dump, content_type='application/json')
 
+@api_view(['GET', 'POST'])
+def getLocalIds(request):
+
+	indicator = Indicator.objects.all()
+
+	serializer = IndicatorSerializer(indicator, many=True)
+
+	return Response(serializer.data)
 
 @api_view(['GET', 'POST'])
 def getLocal(request, my_id):
