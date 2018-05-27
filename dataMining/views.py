@@ -38,7 +38,7 @@ def getIndicator(request, id, year):
 	# return render(request, "index.html", {"data": data})
 	return HttpResponse(dump, content_type='application/json')
 
-def getValue(request, id, year, my_weight):
+def getValue(request, id, year, my_weight, format):
 
 	data = getInfo(id, year, my_weight)
 
