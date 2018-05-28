@@ -66,4 +66,6 @@ def test(request):
     url = "http://" + request.get_host() + "/api/" + ids[0] + "/" + str(year)
     data = requests.get(url=url).json()
 
-    return render(request, "test.html", {"data":data})
+    dump = json.dumps({"result": data})
+
+    return HttpResponse(dump, content_type='application/json')

@@ -1,1 +1,101 @@
-{{data}}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>New HDI</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+
+	<div class="container" style="margin-top: 10%;">
+		
+		<center>
+			<h2>Choose Indicators and Assign Weights</h2>
+		</center>
+		
+		<div style="margin-top:5%;" id="table">
+			<form action="{% url 'customHDI' %}" method="POST">
+				{% csrf_token %}
+				<div class="row" style="margin-top:1%;">
+					<div class="col-md-2">
+						<input type="text" name="coef1" style="height: 100%; width: 100%;text-align: center;" placeholder="Coefficient">
+					</div>
+					<div class="col-md-10">
+						<select class="form-control" name="ind1">
+				   			<option value="" selected disabled hidden>Choose Indicator</option>
+							{% for id, title in indicators.items %}
+							<option value="{{ id }}">{{ title }}</option>
+							{% endfor %}
+				    	</select>
+					</div>
+				</div>
+				<div class="row" style="margin-top:1%;">
+					<div class="col-md-2">
+						<input type="text" name="coef2" style="height: 100%; width: 100%;text-align: center;" placeholder="Coefficient">
+					</div>
+					<div class="col-md-10">
+						<select class="form-control" name="ind2">
+				   			<option value="" selected disabled hidden>Choose Indicator</option>
+							{% for id, title in indicators.items %}
+							<option value="{{ id }}">{{ title }}</option>
+							{% endfor %}
+				    	</select>
+					</div>
+				</div>
+				<div class="row" style="margin-top:1%;">
+					<div class="col-md-2">
+						<input type="text" name="coef3" style="height: 100%; width: 100%;text-align: center;" placeholder="Coefficient">
+					</div>
+					<div class="col-md-10">
+						<select class="form-control" name="ind3">
+				   			<option value="" selected disabled hidden>Choose Indicator</option>
+							{% for id, title in indicators.items %}
+							<option value="{{ id }}">{{ title }}</option>
+							{% endfor %}
+				    	</select>
+					</div>
+				</div>
+				<div class="row" style="margin-top:1%;">
+					<div class="col-md-2">
+						<input type="text" name="coef4" style="height: 100%; width: 100%;text-align: center;" placeholder="Coefficient">
+					</div>
+					<div class="col-md-10">
+						<select class="form-control" name="ind4">
+				   			<option value="" selected disabled hidden>Choose Indicator</option>
+							{% for id, title in indicators.items %}
+							<option value="{{ id }}">{{ title }}</option>
+							{% endfor %}
+				    	</select>
+					</div>
+				</div>
+				<div class="row" style="margin-top:1%;">
+					<div class="col-md-2">
+						<input type="text" name="coef5" style="height: 100%; width: 100%;text-align: center;" placeholder="Coefficient">
+					</div>
+					<div class="col-md-10">
+						<select class="form-control" name="ind5">
+				   			<option value="" selected disabled hidden>Choose Indicator</option>
+							{% for id, title in indicators.items %}
+							<option value="{{ id }}">{{ title }}</option>
+							{% endfor %}
+				    	</select>
+					</div>
+				</div>
+				<div class="row" style="margin-top:1%;">
+					<div class="col-md-12 text-center">
+						<button type="submit" class="btn btn-primary">Calculate</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
