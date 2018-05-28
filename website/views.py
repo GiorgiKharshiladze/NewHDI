@@ -7,11 +7,20 @@ import urllib.request
 
 def index(request):
 
+    return render(request, "main.html")
+
+def dashboard(request):
+
+	return render(request, "dashboard.html")
+
+
+def test(request):
+
     indicators = {"NY.GNP.PCAP.PP.KD" : "GNI per capita, PPP (constant 2011 international $)","NY.GDP.PCAP.PP.KD" : "GDP per capita, PPP (constant 2011 international $)", "SP.DYN.LE00.IN":"Life expectancy at birth, total (years)", "SE.XPD.TOTL.GD.ZS":"Government expenditure on education, total (% of GDP)", "TX.VAL.OTHR.ZS.WT":"Computer, communications and other services (% of commercial service exports)", "EG.ELC.ACCS.ZS":"Access to electricity (% of population)", "FB.CBK.BRCH.P5":"Commercial bank branches (per 100,000 adults)", "MS.MIL.TOTL.P1":"Armed forces personnel, total"}
 
     # "NY.ADJ.NNTY.PC.KD":"Adjusted net national income per capita (constant 2010 US$)", "MS.MIL.TOTL.P1":"Armed forces personnel, total", "SP.REG.BRTH.ZS":"Completeness of birth registration (%)", "SE.COM.DURS":"Compulsory education, duration (years)"
     
-    return render(request, "main.html", {"indicators":indicators})
+    return render(request, "test.html", {"indicators":indicators})
 
 def customHDI(request):
 
@@ -41,11 +50,7 @@ def customHDI(request):
     # return HttpResponse(dump, content_type='application/json')
     return render(request, "custom.html", {"id_one":id_one,"id_two":id_two,"id_three":id_three,"id_four":id_four,"id_five":id_five, "coef_one":coef_one, "coef_two":coef_two, "coef_three":coef_three, "coef_four":coef_four, "coef_five":coef_five,"data":data})
 
-def dashboard(request):
-
-	return render(request, "dashboard.html")
-
-def test(request):
+def example(request):
     # GNI per capita, PPP (constant 2011 international $) (NY.GNP.PCAP.PP.KD)
     # GDP per capita, PPP (constant 2011 international $) (NY.GDP.PCAP.PP.KD)
     # Life expectancy at birth, total (years) (SP.DYN.LE00.IN)
