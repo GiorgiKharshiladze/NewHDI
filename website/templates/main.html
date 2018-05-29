@@ -6,9 +6,9 @@
 {% block styles %}
 {% endblock styles %}
 
-{% include "sectors/header.html" %}
-
 {% block content %}
+
+{% include "sectors/header.html" %}
 
 <!-- START Content -->
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
@@ -284,10 +284,11 @@
         </div>
     </div>
 </div>
-<!-- END Content -->
-{% endblock content %}
 
 {% include "sectors/footer.html" %}
+
+<!-- END Content -->
+{% endblock content %}
 
 {% block scripts %}
 {% endblock scripts %}
