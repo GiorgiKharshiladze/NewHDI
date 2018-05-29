@@ -12,5 +12,6 @@ class Page(models.Model):
 	id = models.AutoField(primary_key=True)
 	title = models.CharField(max_length=255)
 	content = models.TextField(null=True, blank = True)
+	view = models.CharField(max_length=255, null=True)
 	created_at = models.DateTimeField(auto_now_add=True, null=True)
 	updated_at = models.DateTimeField(auto_now=True, null=True)
