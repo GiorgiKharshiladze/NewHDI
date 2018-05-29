@@ -1,7 +1,7 @@
 {% extends "../sectors/base.html" %}
 {% load staticfiles %}
 
-{% block title %}New HDI{% endblock title %}
+{% block title %}{{ data.page_title }}{% endblock title %}
 
 {% block styles %}
 <!-- Custom Style Imports Go Here -->
@@ -18,15 +18,11 @@
     <div class="content-wrapper">
         <div class="content-header row">
             <div class="content-header-left col-md-6 col-12 mb-2">
-                <h3 class="content-header-title">Dark Layout</h3>
+                <h3 class="content-header-title">{{ data.page_title }}</h3>
                 <div class="row breadcrumbs-top">
                     <div class="breadcrumb-wrapper col-12">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a>
-                            </li>
-                            <li class="breadcrumb-item"><a href="#">Starters Kit</a>
-                            </li>
-                            <li class="breadcrumb-item active">Dark Layout
+                            <li class="breadcrumb-item"><a href="#">Dashboard</a>
                             </li>
                         </ol>
                     </div>

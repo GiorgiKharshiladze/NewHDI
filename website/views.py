@@ -6,17 +6,26 @@ import urllib.request
 # Create your views here.
 
 def index(request):
+    
+    data = {}
+    data['page_title'] = "New HDI"
 
-    return render(request, "pages/main.html")
+    return render(request, "pages/main.html", { "data": data })
 
 def developers(request):
+    
+    data = {}
+    data['page_title'] = "Developers Page"
 
-    return render(request, "pages/developers.html")
+    return render(request, "pages/developers.html", { "data": data })
 
 #  Testing Views in development
 def sample(request):
 
-	return render(request, "sample.html")
+    data = {}
+    data['page_title'] = "Sample"
+
+    return render(request, "pages/sample.html", { "data": data })
 
 def test(request):
 
