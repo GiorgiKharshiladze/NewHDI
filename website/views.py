@@ -7,12 +7,16 @@ import urllib.request
 
 def index(request):
 
-    return render(request, "main.html")
+    return render(request, "pages/main.html")
 
+def developers(request):
+
+    return render(request, "pages/developers.html")
+
+#  Testing Views in development
 def sample(request):
 
 	return render(request, "sample.html")
-
 
 def test(request):
 
