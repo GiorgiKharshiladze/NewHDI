@@ -1,35 +1,26 @@
+{% load staticfiles %}
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="nav-item {% if request.resolver_match.url_name == 'index' %} active {% endif %} "><a href="{% url 'index' %}"><i class="la la-home"></i><span class="menu-title" data-i18n="">Dashboard</span><span class="badge badge badge-info badge-pill float-right mr-2">1</span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="la la-rocket"></i><span class="menu-title" data-i18n="">Starter kit</span></a>
+            <li class=" nav-item"><a href="#"><i class="la la-rocket"></i><span class="menu-title" data-i18n="">Menu Item 1</span></a>
                 <ul class="menu-content">
-                    <li><a class="menu-item" href="layout-1-column.html" data-i18n="nav.starter_kit.1_column">1 column</a>
+                    <li><a class="menu-item" href="#">Item 1</a>
                     </li>
-                    <li><a class="menu-item" href="layout-2-columns.html" data-i18n="nav.starter_kit.2_columns">2 columns</a>
-                    </li>
-                    <li><a class="menu-item" href="#" data-i18n="nav.starter_kit.3_columns_detached.main">Content Det. Sidebar</a>
+                    <li><a class="menu-item" href="#">Item 2</a>
                         <ul class="menu-content">
-                            <li><a class="menu-item" href="#" data-i18n="nav.starter_kit.3_columns_detached.3_columns_detached_left_sidebar">Detached left sidebar</a>
-                            </li>
-                            <li><a class="menu-item" href="#" data-i18n="nav.starter_kit.3_columns_detached.3_columns_detached_sticky_left_sidebar">Detached sticky left sidebar</a>
-                            </li>
-                            <li><a class="menu-item" href="#" data-i18n="nav.starter_kit.3_columns_detached.3_columns_detached_right_sidebar">Detached right sidebar</a>
-                            </li>
-                            <li><a class="menu-item" href="#" data-i18n="nav.starter_kit.3_columns_detached.3_columns_detached_sticky_right_sidebar">Detached sticky right sidebar</a>
+                            <li><a class="menu-item" href="#">Sub Item of Item 2</a>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </li>
-            <li class=" nav-item"><a href="#"><i class="la la-file"></i><span class="menu-title" data-i18n="">Changelog</span><span class="badge badge badge-pill badge-danger float-right">1.0</span></a>
+            <li class=" nav-item"><a href="#"><i class="la la-file"></i><span class="menu-title" data-i18n="">Menu Item 2</span><span class="badge badge badge-pill badge-danger float-right">1.0</span></a>
             </li>
             <li class=" navigation-header"><span>Support</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip" data-placement="right" data-original-title="Support"></i>
             </li>
-            <li class=" nav-item"><a href="https://pixinvent.ticksy.com/"><i class="la la-support"></i><span class="menu-title" data-i18n="">Raise Support</span></a>
-            </li>
-            <li class=" nav-item"><a href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/documentation"><i class="la la-folder"></i><span class="menu-title" data-i18n="">Documentation</span></a>
+            <li class=" nav-item"><a href="#"><i class="la la-folder"></i><span class="menu-title" data-i18n="">Developers Page</span></a>
             </li>
         </ul>
     </div>
