@@ -1,19 +1,15 @@
-{% extends "../sectors/base.html" %}
-{% load staticfiles %}
+{% extends "../sectors/base.html" %} 
+{% load staticfiles %} 
 
-{% block title %}{{ data.page_title }}{% endblock title %}
+{% block title %}{{ data.page_title }}{% endblock title %} 
 
 {% block styles %}
 <!-- Custom Style Imports Go Here -->
-{% endblock styles %}
+{% endblock styles %} 
 
 {% block content %}
 <!-- START Content -->
-
-{% include "sectors/header.html" %}
-
-{% include "sectors/sidebar.html" %}
-
+{% include "sectors/header.html" %} {% include "sectors/sidebar.html" %}
 <div class="app-content content">
     <div class="content-wrapper">
         <div class="content-header row">
@@ -42,7 +38,12 @@
                         <div class="card-content collapse show">
                             <div class="card-body">
                                 <div class="card-text">
-                                    {{ data.content|safe }}
+                                    <p>Getting started with your project custom requirements using a ready template which is quite difficult and time taking process, Modern Admin provides useful features to kick start your project development with no efforts !</p>
+                                    <ul>
+                                        <li>Modern Admin provides you getting start pages with different layouts, use the layout as per your custom requirements and just change the branding, menu & content.</li>
+                                        <li>It use PUG as template engine to generate pages and whole template quickly using node js. You can generate entire template with your selected custom layout, branding & menu. Save your time for doing the common changes for each page (i.e menu, branding and footer) by generating template with pug.</li>
+                                        <li>Every components in Modern Admin are decoupled, it means use use only components you actually need! Remove unnecessary and extra code easily just by excluding the path to specific SCSS, JS file.</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -53,11 +54,9 @@
         </div>
     </div>
 </div>
-
 {% include "sectors/footer.html" %}
-
 <!-- END Content -->
-{% endblock content %}
+{% endblock content %} 
 
 {% block scripts %}
 <!-- Custom Script Imports Go Here -->

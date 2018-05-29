@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .helper import *
-from .models import Page
 import urllib.request
 
 # Create your views here.
@@ -16,9 +15,7 @@ def index(request):
 def developers(request):
     
     data = {}
-    my_page = Page.objects.filter(view='developers').get()
-    data['page_title'] = my_page.title
-    data['content'] = my_page.content
+    data['page_title'] = "Developers Page"
 
     return render(request, "pages/developers.html", { "data": data })
 
