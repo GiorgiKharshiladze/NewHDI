@@ -12,12 +12,19 @@ def index(request):
 
     return render(request, "pages/main.html", { "data": data })
 
-def developers(request):
+
+def api_index(request):
+    data = {}
+    data['page_title'] = "API Index"
+
+    return render(request, "pages/api_index.html", { "data": data })
+
+def api_access(request):
     
     data = {}
-    data['page_title'] = "Developers Page"
+    data['page_title'] = "API Access"
 
-    return render(request, "pages/developers.html", { "data": data })
+    return render(request, "pages/api_access.html", { "data": data })
 
 #  Testing Views in development
 def sample(request):

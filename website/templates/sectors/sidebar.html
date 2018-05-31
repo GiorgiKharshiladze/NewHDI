@@ -20,7 +20,13 @@
             </li>
             <li class=" navigation-header"><span>Support</span><i class="la la-ellipsis-h ft-minus" data-toggle="tooltip" data-placement="right" data-original-title="Support"></i>
             </li>
-            <li class=" nav-item {% if request.resolver_match.url_name == 'developers' %} active {% endif %} "><a href="{% url 'developers' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">Developers Page</span></a>
+            <li class=" nav-item"><a href="#"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">For Developers</span></a>
+                <ul class="menu-content">
+                    <li class=" nav-item {% if request.resolver_match.url_name == 'api_access' %} active {% endif %} "><a href="{% url 'api_access' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">API Access</span></a>
+                    </li>
+                    <li class=" nav-item {% if request.resolver_match.url_name == 'api_index' %} active {% endif %} "><a href="{% url 'api_index' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">API Index</span></a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>
