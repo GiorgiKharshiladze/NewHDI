@@ -6,7 +6,7 @@ urlpatterns = [
 	# Main Routes
 	url(r'^$', views.index, name='index'),
 	url(r'^api_access/$', views.api_access, name='api_access'),
-	url(r'^api_index/$', views.api_index, name='api_index'),
+	url(r'^api_data_dir/$', views.api_data_dir, name='api_data_dir'),
 
 	# Main Temporary Routes
 	url(r'^test/$', views.test, name='test'),

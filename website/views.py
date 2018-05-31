@@ -13,11 +13,11 @@ def index(request):
     return render(request, "pages/main.html", { "data": data })
 
 
-def api_index(request):
+def api_data_dir(request):
     data = {}
-    data['page_title'] = "API Index"
+    data['page_title'] = "Data Directory"
 
-    return render(request, "pages/api_index.html", { "data": data })
+    return render(request, "pages/api_data_dir.html", { "data": data })
 
 def api_access(request):
     

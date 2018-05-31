@@ -24,7 +24,7 @@
                 <ul class="menu-content">
                     <li class=" nav-item {% if request.resolver_match.url_name == 'api_access' %} active {% endif %} "><a href="{% url 'api_access' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">API Access</span></a>
                     </li>
-                    <li class=" nav-item {% if request.resolver_match.url_name == 'api_index' %} active {% endif %} "><a href="{% url 'api_index' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">API Index</span></a>
+                    <li class=" nav-item {% if request.resolver_match.url_name == 'api_data_dir' %} active {% endif %} "><a href="{% url 'api_data_dir' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">Data Directory</span></a>
                     </li>
                 </ul>
             </li>
