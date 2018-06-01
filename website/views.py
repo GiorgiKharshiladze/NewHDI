@@ -17,6 +17,14 @@ def api_data_dir(request):
     data = {}
     data['page_title'] = "Data Directory"
 
+    url = "http://" + request.get_host() + "/api/id/all/?format=json"
+
+    data['indicators'] = requests.get(url=url).json()
+
+    for indicator in data['indicators']:
+        indicator['recent'] = getRecentOfAll([indicator['my_id']]) or "Not Available" # List of just one item
+
+
     return render(request, "pages/api_data_dir.html", { "data": data })
 
 def api_access(request):

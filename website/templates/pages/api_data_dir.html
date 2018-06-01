@@ -31,7 +31,7 @@
             <section class="row">
                 <div class="col-sm-12">
                     <!-- API Access -->
-                    <div id="api_access" class="card">
+                    <!-- <div id="api_access" class="card">
                         <div class="card-header">
                             <h4 class="card-title">API Index</h4>
                         </div>
@@ -47,8 +47,60 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!--/ API Access -->
+                    {% for indicator in data.indicators %}
+                    <div class="col-md-6 col-sm-12">
+                      <div class="card">
+                        <div class="card-header">
+                          <h4 class="card-title"><b>{{ indicator.name }}</b></h4>
+                          <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
+                          <div class="heading-elements">
+                            <ul class="list-inline mb-0">
+                              <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
+                              <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div class="card-content collapse show">
+                          <div class="card-body">
+
+                              <div class="table-responsive">
+                                <table class="table mb-0">
+                                  <tbody>
+                                    <tr>
+                                      <th scope="row" class="border-top-0">ID</th>
+                                      <td class="border-top-0">{{ indicator.my_id }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Description</th>
+                                      <td>{{ indicator.description }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Type</th>
+                                      {% if indicator.proportional %}
+                                      <td>Higher value means higher development</td>
+                                      {% else %}
+                                      <td>Higher value means lower development</td>
+                                      {% endif%}
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Source</th>
+                                      <td>{{ indicator.source }}</td>
+                                    </tr>
+                                    <tr>
+                                      <th scope="row">Most Recent</th>
+                                      <td>{{ indicator.recent }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </section>
         </div>
