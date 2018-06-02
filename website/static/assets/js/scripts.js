@@ -9,5 +9,7 @@
 })(window);
 
 function createFormula(){
-	console.log("Giorgi");
+	console.log($("#chooseAmount").val());
+
+	
 }
