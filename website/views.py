@@ -17,6 +17,12 @@ def create_hdi(request):
     data = {}
     data['page_title'] = "Create Your HDI"
 
+    url = "http://" + request.get_host() + "/api/id/all/?format=json"
+
+    data['indicators'] = requests.get(url=url).json()
+    data['weights'] = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
+    data['operations'] = ['*', '+']
+
     return render(request, "pages/create_hdi.html", { "data": data })
 
 def api_data_dir(request):
