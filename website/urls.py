@@ -5,8 +5,10 @@ from django.conf.urls import url
 urlpatterns = [
 	# Main Routes
 	url(r'^$', views.index, name='index'),
-	url(r'^api_access/$', views.api_access, name='api_access'),
-	url(r'^api_data_dir/$', views.api_data_dir, name='api_data_dir'),
+	url(r'^hdi/create/$', views.create_hdi, name='create_hdi'),
+	# API Access
+	url(r'^api/access/$', views.api_access, name='api_access'),
+	url(r'^api/data_directory/$', views.api_data_dir, name='api_data_dir'),
 
 	# Main Temporary Routes
 	url(r'^test/$', views.test, name='test'),

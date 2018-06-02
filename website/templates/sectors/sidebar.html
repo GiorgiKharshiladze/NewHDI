@@ -4,7 +4,9 @@
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="nav-item {% if request.resolver_match.url_name == 'index' %} active {% endif %} "><a href="{% url 'index' %}"><i class="la la-home"></i><span class="menu-title" data-i18n="">Dashboard</span><span class="badge badge badge-info badge-pill float-right mr-2">1</span></a>
             </li>
-            <li class=" nav-item"><a href="#"><i class="la la-rocket"></i><span class="menu-title" data-i18n="">Menu Item 1</span></a>
+            <li class="nav-item {% if request.resolver_match.url_name == 'create_hdi' %} active {% endif %}"><a href="{% url 'create_hdi' %}"><i class="la la-magic"></i><span class="menu-title" data-i18n="">Create Your HDI</span></a>
+            </li>
+            <li class="nav-item"><a href="#"><i class="la la-rocket"></i><span class="menu-title" data-i18n="">Menu Item 1</span></a>
                 <ul class="menu-content">
                     <li><a class="menu-item" href="#">Item 1</a>
                     </li>

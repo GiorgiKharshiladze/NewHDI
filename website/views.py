@@ -12,6 +12,12 @@ def index(request):
 
     return render(request, "pages/main.html", { "data": data })
 
+def create_hdi(request):
+
+    data = {}
+    data['page_title'] = "Create Your HDI"
+
+    return render(request, "pages/create_hdi.html", { "data": data })
 
 def api_data_dir(request):
     data = {}
