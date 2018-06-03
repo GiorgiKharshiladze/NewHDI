@@ -109,7 +109,7 @@ def customHDI(request):
     year = getRecentOfAll(ids)
     
     # Handle form data here
-    data = handleData(request, year, ids, coefs, ['*','*','*','*','*'])
+    data = handleData(request, year, ids, coefs, ['*','*','*','*'])
 
     # dump = json.dumps({"result": data})
     # return HttpResponse(dump, content_type='application/json')
