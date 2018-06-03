@@ -33,7 +33,7 @@ def getRecentOfAll(ids):
     return False
 
 
-def handleData(request, year, ids, coefs):
+def handleData(request, year, ids, coefs, opers):
 
     data = []
 
@@ -47,14 +47,14 @@ def handleData(request, year, ids, coefs):
             result = json.loads(url.read().decode())['result']
             data.append(result)
 
-    data = beautify(data, ids, coefs)
+    data = beautify(data, ids, coefs, opers)
     data = onlyAvailable(data, ids)
 
     data = sortFormat(data)
 
     return data
 
-def beautify(data, ids, coefs):
+def beautify(data, ids, coefs, opers):
 
     newDict = {}
 
@@ -67,7 +67,15 @@ def beautify(data, ids, coefs):
         for key, value in data[i].items():
             newDict[key]['name'] = data[i][key]['country']
             newDict[key]['id_'+str(i)] = {"id":ids[i],"value":data[i][key]['value'], "pre_assign":data[i][key]['index']**(1/float(coefs[i])), "post_assign":data[i][key]['index']}
-            newDict[key]['final'] *= newDict[key]['id_'+str(i)]['post_assign']
+
+            if i == 0:
+                newDict[key]['final'] *= newDict[key]['id_'+str(i)]['post_assign']
+            elif i > 0:
+                if opers[i-1] == "*":
+                    newDict[key]['final'] *= newDict[key]['id_'+str(i)]['post_assign']
+                elif opers[i-1] == "+":
+                    newDict[key]['final'] += newDict[key]['id_'+str(i)]['post_assign']
+
             #data[i][key]['country']
             #data[i][key]['value']
             #data[i][key]['index']
