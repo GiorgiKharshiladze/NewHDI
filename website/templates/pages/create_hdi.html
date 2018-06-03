@@ -63,158 +63,7 @@
                         </div>
                     </div>
                     <div id="formulaCard" class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Create Your Formula</h4>
-                        </div>
-                        <div class="card-content collapse show">
-                            <div class="card-body">
-                                    
-                                <form action="{% url 'view_hdi' %}" method="POST">
-                                    <div class="row text-center">
-                                        <div class="col-md-12">
-                                            <select class="select2 form-control col-md-7">
-                                                <optgroup label="WorldBank">
-                                                  {% for indicator in data.indicators %}
-                                                  <option value="{{ indicator.my_id }}">{{ indicator.description }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                            <select class="select2 form-control col-md-1">
-                                                <optgroup label="Weight">
-                                                  {% for weight in data.weights %}
-                                                  <option value="{{ weight }}">{{ weight }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center" style="margin-top: 0.5%;">
-                                        <div class="col-md-12">
-                                            <select class="select2 form-control col-md-8">
-                                                <optgroup label="Operation">
-                                                  {% for operation in data.operations %}
-                                                  <option value="{{ operation }}">{{ operation }}</option>
-                                                </optgroup>
-                                              {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center" style="margin-top: 0.5%">
-                                        <div class="col-md-12">
-                                            <select class="select2 form-control col-md-7">
-                                                <optgroup label="WorldBank">
-                                                  {% for indicator in data.indicators %}
-                                                  <option value="{{ indicator.my_id }}">{{ indicator.description }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                            <select class="select2 form-control col-md-1">
-                                                <optgroup label="Weight">
-                                                  {% for weight in data.weights %}
-                                                  <option value="{{ weight }}">{{ weight }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center" style="margin-top: 0.5%;">
-                                        <div class="col-md-12">
-                                            <select class="select2 form-control col-md-8">
-                                                <optgroup label="Operation">
-                                                  {% for operation in data.operations %}
-                                                  <option value="{{ operation }}">{{ operation }}</option>
-                                                </optgroup>
-                                              {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center" style="margin-top: 0.5%">
-                                        <div class="col-md-12">
-                                            <select class="select2 form-control col-md-7">
-                                                <optgroup label="WorldBank">
-                                                  {% for indicator in data.indicators %}
-                                                  <option value="{{ indicator.my_id }}">{{ indicator.description }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                            <select class="select2 form-control col-md-1">
-                                                <optgroup label="Weight">
-                                                  {% for weight in data.weights %}
-                                                  <option value="{{ weight }}">{{ weight }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center" style="margin-top: 0.5%;">
-                                        <div class="col-md-12">
-                                            <select class="select2 form-control col-md-8">
-                                                <optgroup label="Operation">
-                                                  {% for operation in data.operations %}
-                                                  <option value="{{ operation }}">{{ operation }}</option>
-                                                </optgroup>
-                                              {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center" style="margin-top: 0.5%">
-                                        <div class="col-md-12">
-                                            <select class="select2 form-control col-md-7">
-                                                <optgroup label="WorldBank">
-                                                  {% for indicator in data.indicators %}
-                                                  <option value="{{ indicator.my_id }}">{{ indicator.description }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                            <select class="select2 form-control col-md-1">
-                                                <optgroup label="Weight">
-                                                  {% for weight in data.weights %}
-                                                  <option value="{{ weight }}">{{ weight }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center" style="margin-top: 0.5%;">
-                                        <div class="col-md-12">
-                                            <select class="select2 form-control col-md-8">
-                                                <optgroup label="Operation">
-                                                  {% for operation in data.operations %}
-                                                  <option value="{{ operation }}">{{ operation }}</option>
-                                                </optgroup>
-                                              {% endfor %}
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center" style="margin-top: 0.5%">
-                                        <div class="col-md-12">
-                                            <select class="select2 form-control col-md-7">
-                                                <optgroup label="WorldBank">
-                                                  {% for indicator in data.indicators %}
-                                                  <option value="{{ indicator.my_id }}">{{ indicator.description }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                            <select class="select2 form-control col-md-1">
-                                                <optgroup label="Weight">
-                                                  {% for weight in data.weights %}
-                                                  <option value="{{ weight }}">{{ weight }}</option>
-                                                  {% endfor %}
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                        
-                                    <div class="row text-center" style="margin-top: 1%">
-                                        <div class="col-md-12">
-                                            <button type="submit" class="btn btn-primary text-center">Calculate</button>
-                                        </div>
-                                    </div>
-
-                                </form>
-
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </section>
@@ -229,7 +78,10 @@
 
 {% block scripts %}
 <!-- Custom Script Imports Go Here -->
-<script src="{% static 'assets/js/scripts.js' %}" type="text/javascript"></script>
 <script src="{% static 'app-assets/vendors/js/forms/select/select2.full.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'app-assets/js/scripts/forms/select/form-select2.js' %}" type="text/javascript"></script>
+<script src="{% static 'assets/js/scripts.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+    
+</script>
 {% endblock scripts %}
