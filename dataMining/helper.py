@@ -2,6 +2,7 @@ import requests
 import json
 import sys
 from copy import deepcopy
+from dataMining.models import Indicator
 
 BASE_URL = "http://api.worldbank.org/v2/"
 
@@ -57,7 +58,7 @@ def getCleanData(id, year):
     for country in countries.values():
         country = clean(country)
         if country['value']:
-            country['index'] = calculate(country['value'], maximum, minimum)
+            country['index'] = calculate(country['value'], maximum, minimum, id)
         else:
             country['index'] = None
 
@@ -73,9 +74,15 @@ def getInfo(id, year, my_weight):
 
     return updateIndices(countries, my_weight)
 
-def calculate(actual, maximum, minimum):
+def calculate(actual, maximum, minimum, id):
     # We can have separate special cases here i.e LOG, Education etc.
+
     formula = (actual-minimum)/(maximum-minimum)
+
+    isProportional = Indicator.objects.get(my_id=id).proportional
+
+    if not isProportional:
+        formula = 1 - formula
 
     return formula
 

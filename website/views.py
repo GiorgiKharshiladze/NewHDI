@@ -42,9 +42,10 @@ def view_hdi(request):
 
     data['indicatorNames'] = getIndicatorNames(data['indicators'])
 
-    year = getRecentOfAll(data['indicators'])
+    data['year'] = getRecentOfAll(data['indicators'])
 
-    data['result'] = handleData(request, year, data['indicators'], data['weights'], data['operations'])
+    data['result'] = handleData(request, data['year'], data['indicators'], data['weights'], data['operations'])
+    
 
     # dump = json.dumps({"result": data['result']})
 
