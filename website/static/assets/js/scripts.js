@@ -8,9 +8,7 @@
   WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR JAVASCRIPT CODE PLEASE CONSIDER WRITING YOUR SCRIPT HERE.  */
 })(window);
 
-var amount = $("#chooseAmount").val();
-
-if (amount == null) {
+if ($("#chooseAmount").val() == null) {
 		$("#createButton").attr("disabled", "");
 }
 
@@ -20,7 +18,9 @@ $("#chooseAmount").on("change", function() {
 	}
 });
 
+var baseURL = window.location.protocol + "//" + window.location.hostname + ":" + window.location.port;
+
 function createFormula() {
 
-	document.location = window.location.href + "?amount=" + amount;
+	document.location = baseURL + window.location.pathname + "?amount=" + $("#chooseAmount").val();
 }
