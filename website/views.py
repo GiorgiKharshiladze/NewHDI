@@ -25,6 +25,13 @@ def create_hdi(request):
 
     return render(request, "pages/create_hdi.html", { "data": data })
 
+def view_hdi(request):
+
+    data = {}
+    data['page_title'] = "View Your Results"
+
+    return render(request, "pages/view_hdi.html", { "data": data })
+
 def api_data_dir(request):
     data = {}
     data['page_title'] = "Data Directory"
