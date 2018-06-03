@@ -27,5 +27,5 @@ function createFormula() {
 
 
 $('#data_table').DataTable( {
-    "order": [[ 4, "desc" ]]
+    "order": [[ parseInt(amount)+1, "desc" ]]
 } );
