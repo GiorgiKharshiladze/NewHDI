@@ -55,23 +55,27 @@
                                   <thead>
                                     <tr>
                                       <th>Country</th>
-                                      <th>Indicator 1</th>
-                                      <th>Indicator 2</th>
+                                      {% for name in data.indicatorNames %}
+                                      <th>{{ name }}</th>
+                                      {% endfor %}
                                       <th>New HDI</th>
                                     </tr>
                                   </thead>
                                   <tbody>
-                                    <tr>
+                                    <!-- <tr>
                                       <td>Tiger</td>
                                       <td>Nixon</td>
                                       <td>System Architect</td>
                                       <td>Edinburgh</td>
-                                    </tr>
+                                    </tr> -->
                                     {% for key, country in data.result.items %}
                                     <tr>
                                       <td>{{ country.name }}</td>
-                                      <td>{{ country.id_0.value }}</td>
-                                      <td>{{ country.id_1.value }}</td>
+                                      {% if country.id_0 %}<td>{{ country.id_0.value|floatformat:2|intcomma }}</td>{% endif %}
+                                      {% if country.id_1 %}<td>{{ country.id_1.value|floatformat:2|intcomma }}</td>{% endif %}
+                                      {% if country.id_2 %}<td>{{ country.id_2.value|floatformat:2|intcomma }}</td>{% endif %}
+                                      {% if country.id_3 %}<td>{{ country.id_3.value|floatformat:2|intcomma }}</td>{% endif %}
+                                      {% if country.id_4 %}<td>{{ country.id_4.value|floatformat:2|intcomma }}</td>{% endif %}
                                       <td>{{ country.final|floatformat:4|intcomma }}</td>
                                     </tr>
                                     {% endfor %}

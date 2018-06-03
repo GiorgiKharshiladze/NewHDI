@@ -40,6 +40,8 @@ def view_hdi(request):
         if (i < int(data['amount']) - 1):
             data['operations'].append(request.POST.get('operation' + str(i+1)))
 
+    data['indicatorNames'] = getIndicatorNames(data['indicators'])
+
     year = getRecentOfAll(data['indicators'])
 
     data['result'] = handleData(request, year, data['indicators'], data['weights'], data['operations'])

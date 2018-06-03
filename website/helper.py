@@ -4,6 +4,7 @@ import urllib.request
 import json
 from dataMining.helper import validate, BASE_URL, getIndicatorName
 from collections import defaultdict
+from dataMining.models import Indicator
 
 # ==========================
 # IMPORTS FROM DATA MINING
@@ -102,3 +103,12 @@ def sortFormat(data):
         newData.insert(0, data[i[1]])
 
     return newData
+
+def getIndicatorNames(indicators):
+
+    indicatorNames = []
+
+    for indicator in indicators:
+        indicatorNames.append(Indicator.objects.get(my_id=indicator).name)
+
+    return indicatorNames
