@@ -42,13 +42,13 @@ def handleData(request, year, ids, coefs):
         my_weight = coefs[i]
 
         my_url = "http://" + request.get_host() + "/api/" + my_id + "/" + str(year) + "/" + str(my_weight)
-        # temp = requests.get(url=url).json()
+
         with urllib.request.urlopen(my_url) as url:
             result = json.loads(url.read().decode())['result']
             data.append(result)
 
     data = beautify(data, ids, coefs)
-    data = available(data, ids)
+    data = onlyAvailable(data, ids)
 
     data = sortFormat(data)
 
@@ -74,7 +74,7 @@ def beautify(data, ids, coefs):
 
     return newDict
 
-def available(data, ids):
+def onlyAvailable(data, ids):
     
     for i in range(len(ids)):
         for key in list(data.keys()):
