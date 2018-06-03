@@ -50,7 +50,8 @@ def handleData(request, year, ids, coefs, opers):
     data = beautify(data, ids, coefs, opers)
     data = onlyAvailable(data, ids)
 
-    data = sortFormat(data)
+    # SORT CAN BE DONE IN THE FRONTEND
+    # data = sortFormat(data) 
 
     return data
 
