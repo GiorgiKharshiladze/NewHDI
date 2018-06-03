@@ -46,7 +46,7 @@
                                     <div class="col-md-3"></div>
                                     <div class="col-md-6">
                                         <fieldset class="form-group position-relative">
-                                          <select class="form-control border-primary" id="chooseAmount">
+                                          <select class="select2 form-control border-primary" id="chooseAmount">
                                             <option selected="" disabled="">Choose Number of Components in your HDI</option>
                                             <option value="1" {% if request.GET.amount == '1' %} selected="" {% endif %}>One</option>
                                             <option value="2" {% if request.GET.amount == '2' %} selected="" {% endif %}>Two</option>
@@ -75,14 +75,14 @@
                                     {% for _ in range %}
                                         <div class="row text-center" style="margin-top: 0.5%;">
                                             <div class="col-md-12">
-                                                <select class="select2 form-control col-md-7">
+                                                <select class="select2 form-control col-md-7" name="indicator{{ forloop.counter }}">
                                                     <optgroup label="WorldBank">
                                                       {% for indicator in data.indicators %}
                                                       <option value="{{ indicator.my_id }}">{{ indicator.description }}</option>
                                                       {% endfor %}
                                                     </optgroup>
                                                 </select>
-                                                <select class="select2 form-control col-md-1">
+                                                <select class="select2 form-control col-md-1"  name="weight{{ forloop.counter }}">
                                                     <optgroup label="Weight">
                                                       {% for weight in data.weights %}
                                                       <option value="{{ weight }}">{{ weight }}</option>
@@ -94,7 +94,7 @@
                                         {% if forloop.counter|slugify < request.GET.amount %}
                                             <div class="row text-center" style="margin-top: 0.5%;">
                                                 <div class="col-md-12">
-                                                    <select class="select2 form-control col-md-8">
+                                                    <select class="select2 form-control col-md-8"  name="operation{{ forloop.counter }}">
                                                         <optgroup label="Operation">
                                                           {% for operation in data.operations %}
                                                           <option value="{{ operation }}">{{ operation }}</option>
