@@ -29,9 +29,24 @@ def view_hdi(request):
 
     data = {}
     data['page_title'] = "View Your Results"
+    data['indicators'] = []
+    data['weights'] = []
+    data['operations'] = []
     data['amount'] = request.POST.get('amount')
 
-    return render(request, "pages/view_hdi.html", { "data": data })
+    for i in range(int(data['amount'])):
+        data['indicators'].append(request.POST.get('indicator' + str(i+1)))
+        data['weights'].append(request.POST.get('weight' + str(i+1)))
+        data['operations'].append(request.POST.get('operation' + str(i+1)))
+
+    year = getRecentOfAll(data['indicators'])
+
+    data = handleData(request, year, data['indicators'], data['weights'])
+
+    dump = json.dumps({"result": data})
+
+    return HttpResponse(dump, content_type='application/json')
+    # return render(request, "pages/view_hdi.html", { "data": data })
 
 def api_data_dir(request):
     data = {}
