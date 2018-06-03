@@ -71,11 +71,15 @@
                             <div class="card-body">
                                     
                                 <form action="{% url 'view_hdi' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" value="{{ request.GET.amount }}" name="amount">
+                                    
                                     {% with ''|center:request.GET.amount as range %}
                                     {% for _ in range %}
                                         <div class="row text-center" style="margin-top: 0.5%;">
                                             <div class="col-md-12">
                                                 <select class="select2 form-control col-md-7" name="indicator{{ forloop.counter }}">
+                                                    <option selected="" disabled="">Choose Indicator</option>
                                                     <optgroup label="WorldBank">
                                                       {% for indicator in data.indicators %}
                                                       <option value="{{ indicator.my_id }}">{{ indicator.description }}</option>
@@ -83,11 +87,10 @@
                                                     </optgroup>
                                                 </select>
                                                 <select class="select2 form-control col-md-1"  name="weight{{ forloop.counter }}">
-                                                    <optgroup label="Weight">
+                                                    <option selected="" disabled="">Weight</option>
                                                       {% for weight in data.weights %}
                                                       <option value="{{ weight }}">{{ weight }}</option>
                                                       {% endfor %}
-                                                    </optgroup>
                                                 </select>
                                             </div>
                                         </div>
@@ -95,11 +98,10 @@
                                             <div class="row text-center" style="margin-top: 0.5%;">
                                                 <div class="col-md-12">
                                                     <select class="select2 form-control col-md-8"  name="operation{{ forloop.counter }}">
-                                                        <optgroup label="Operation">
-                                                          {% for operation in data.operations %}
+                                                        <option selected="" disabled="">Mathematical Operation</option>
+                                                        {% for operation in data.operations %}
                                                           <option value="{{ operation }}">{{ operation }}</option>
-                                                        </optgroup>
-                                                      {% endfor %}
+                                                        {% endfor %}
                                                     </select>
                                                 </div>
                                             </div>
