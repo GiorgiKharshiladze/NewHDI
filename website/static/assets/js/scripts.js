@@ -9,7 +9,10 @@
 })(window);
 
 function createFormula(){
-	console.log($("#chooseAmount").val());
+	
+	amount = $("#chooseAmount").val();
+
+	
 
 	
 }
