@@ -40,14 +40,14 @@ def view_hdi(request):
         if (i < int(data['amount']) - 1):
             data['operations'].append(request.POST.get('operation' + str(i+1)))
 
-    year = getRecentOfAll(data['indicators'])
+    # year = getRecentOfAll(data['indicators'])
 
-    data['result'] = handleData(request, year, data['indicators'], data['weights'], data['operations'])
+    # data['result'] = handleData(request, year, data['indicators'], data['weights'], data['operations'])
 
-    dump = json.dumps({"result": data['result']})
+    # dump = json.dumps({"result": data['result']})
 
-    return HttpResponse(dump, content_type='application/json')
-    # return render(request, "pages/view_hdi.html", { "data": data })
+    # return HttpResponse(dump, content_type='application/json')
+    return render(request, "pages/view_hdi.html", { "data": data })
 
 def api_data_dir(request):
     data = {}

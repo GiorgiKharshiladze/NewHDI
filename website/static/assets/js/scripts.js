@@ -24,3 +24,8 @@ function createFormula() {
 
 	document.location = baseURL + window.location.pathname + "?amount=" + $("#chooseAmount").val();
 }
+
+
+$('#data_table').DataTable( {
+    "order": [[ 4, "desc" ]]
+} );
