@@ -73,7 +73,10 @@
                                 <!-- BEGIN: ALERT -->
                                     <div class="row">
                                         <div class="col md-2"></div>
-                                        <div class="col-md-8" id="alertSpace"></div>
+                                        <div class="col-md-8">
+                                            <div class="col-md-12" id="validSpace"></div>
+                                            <div class="col-md-12" id="alertSpace"></div>
+                                        </div>
                                         <div class="col md-2"></div>
                                     </div>
                                 <!-- END: ALERT -->
@@ -85,7 +88,7 @@
                                     {% for _ in range %}
                                         <div class="row text-center" style="margin-top: 0.5%;">
                                             <div class="col-md-12">
-                                                <select class="select2 form-control col-md-7" name="indicator{{ forloop.counter }}" required="">
+                                                <select class="select2 form-control col-md-7" name="indicator{{ forloop.counter }}" id="indicator{{ forloop.counter }}">
                                                     <option selected="" disabled="">Choose Indicator</option>
                                                     <optgroup label="WorldBank">
                                                       {% for indicator in data.indicators %}
@@ -93,7 +96,7 @@
                                                       {% endfor %}
                                                     </optgroup>
                                                 </select>
-                                                <select class="select2 form-control col-md-1"  name="weight{{ forloop.counter }}" id="weight{{ forloop.counter }}" class="weights" required="">
+                                                <select class="select2 form-control col-md-1" name="weight{{ forloop.counter }}" id="weight{{ forloop.counter }}" class="weights">
                                                     <option selected="" disabled="">Weight</option>
                                                       <!-- {% for weight in data.weights %} -->
                                                       <!-- <option value="{{ weight }}">{{ weight }}</option> -->
@@ -104,7 +107,7 @@
                                         {% if forloop.counter|slugify < request.GET.amount %}
                                             <div class="row text-center" style="margin-top: 0.5%;">
                                                 <div class="col-md-12">
-                                                    <select class="select2 form-control col-md-8"  name="operation{{ forloop.counter }}" required="">
+                                                    <select class="select2 form-control col-md-8" name="operation{{ forloop.counter }}" id="operation{{ forloop.counter }}">
                                                         <option selected="" disabled="">Mathematical Operation</option>
                                                         {% for operation in data.operations %}
                                                           <option value="{{ operation }}">{{ operation }}</option>
