@@ -86,11 +86,11 @@
                                                       {% endfor %}
                                                     </optgroup>
                                                 </select>
-                                                <select class="select2 form-control col-md-1"  name="weight{{ forloop.counter }}" required="">
+                                                <select class="select2 form-control col-md-1"  name="weight{{ forloop.counter }}" id="weight{{ forloop.counter }}" required="">
                                                     <option selected="" disabled="">Weight</option>
-                                                      {% for weight in data.weights %}
-                                                      <option value="{{ weight }}">{{ weight }}</option>
-                                                      {% endfor %}
+                                                      <!-- {% for weight in data.weights %} -->
+                                                      <!-- <option value="{{ weight }}">{{ weight }}</option> -->
+                                                      <!-- {% endfor %} -->
                                                 </select>
                                             </div>
                                         </div>
@@ -137,6 +137,9 @@
 <!-- Custom Script Imports Go Here -->
 <script src="{% static 'app-assets/vendors/js/forms/select/select2.full.min.js' %}" type="text/javascript"></script>
 <script src="{% static 'app-assets/js/scripts/forms/select/form-select2.js' %}" type="text/javascript"></script>
+<script type="text/javascript">
+var amount = "{{ data.amount }}";
+</script>
 <script src="{% static 'assets/js/scripts.js' %}" type="text/javascript"></script>
 
 {% endblock scripts %}

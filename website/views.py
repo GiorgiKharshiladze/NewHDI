@@ -20,7 +20,7 @@ def create_hdi(request):
 
     url = "http://" + request.get_host() + "/api/id/all/?format=json"
 
-    for num in range(100):
+    for num in range(1,100):
         weights.append(num/100)
 
     data['indicators'] = requests.get(url=url).json()
