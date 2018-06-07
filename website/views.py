@@ -15,12 +15,16 @@ def index(request):
 def create_hdi(request):
 
     data = {}
+    weights = []
     data['page_title'] = "Create Your HDI"
 
     url = "http://" + request.get_host() + "/api/id/all/?format=json"
 
+    for num in range(100):
+        weights.append(num/100)
+
     data['indicators'] = requests.get(url=url).json()
-    data['weights'] = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+    data['weights'] = weights
     data['operations'] = ['*', '+']
 
     return render(request, "pages/create_hdi.html", { "data": data })
