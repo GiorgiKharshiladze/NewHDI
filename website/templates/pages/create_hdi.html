@@ -69,7 +69,14 @@
                         </div>
                         <div class="card-content collapse show">
                             <div class="card-body">
-                                    
+                                
+                                <!-- BEGIN: ALERT -->
+                                    <div class="row">
+                                        <div class="col md-2"></div>
+                                        <div class="col-md-8" id="alertSpace"></div>
+                                        <div class="col md-2"></div>
+                                    </div>
+                                <!-- END: ALERT -->
                                 <form action="{% url 'view_hdi' %}" method="POST">
                                     {% csrf_token %}
                                     <input type="hidden" value="{{ request.GET.amount }}" name="amount">
@@ -97,7 +104,7 @@
                                         {% if forloop.counter|slugify < request.GET.amount %}
                                             <div class="row text-center" style="margin-top: 0.5%;">
                                                 <div class="col-md-12">
-                                                    <select class="select2 form-control col-md-8"  name="operation{{ forloop.counter }}" onchange="getval(this)" required="">
+                                                    <select class="select2 form-control col-md-8"  name="operation{{ forloop.counter }}" required="">
                                                         <option selected="" disabled="">Mathematical Operation</option>
                                                         {% for operation in data.operations %}
                                                           <option value="{{ operation }}">{{ operation }}</option>
@@ -109,8 +116,6 @@
 
                                     {% endfor %}
                                     {% endwith %}
-
-                                    <div class="row"><p id="giorgi"></p></div>
 
                                     <div class="row text-center" style="margin-top: 1%">
                                         <div class="col-md-12">

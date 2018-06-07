@@ -46,7 +46,15 @@ function sumUp() {
     }
   }
   sum = eval(weightList.join('+'));
-  console.log(sum);
+  if (sum == 1) {
+    $("#calculateButton").removeAttr("disabled");
+    $("#alertSpace").html('');
+  }
+  else {
+    $("#calculateButton").attr("disabled", "");
+    $("#alertSpace").html('<div class="alert alert-primary mb-2" role="alert">Weights total should be 100%, current total = '+Math.round(sum * 10000)/100+'%</div>');
+  }
+  // console.log(sum);
 }
 
 for (var i=1; i<= parseInt(amount); i++){
