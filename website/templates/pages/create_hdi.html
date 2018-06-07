@@ -86,7 +86,7 @@
                                                       {% endfor %}
                                                     </optgroup>
                                                 </select>
-                                                <select class="select2 form-control col-md-1"  name="weight{{ forloop.counter }}" id="weight{{ forloop.counter }}" required="">
+                                                <select class="select2 form-control col-md-1"  name="weight{{ forloop.counter }}" id="weight{{ forloop.counter }}" class="weights" required="">
                                                     <option selected="" disabled="">Weight</option>
                                                       <!-- {% for weight in data.weights %} -->
                                                       <!-- <option value="{{ weight }}">{{ weight }}</option> -->
@@ -97,7 +97,7 @@
                                         {% if forloop.counter|slugify < request.GET.amount %}
                                             <div class="row text-center" style="margin-top: 0.5%;">
                                                 <div class="col-md-12">
-                                                    <select class="select2 form-control col-md-8"  name="operation{{ forloop.counter }}" required="">
+                                                    <select class="select2 form-control col-md-8"  name="operation{{ forloop.counter }}" onchange="getval(this)" required="">
                                                         <option selected="" disabled="">Mathematical Operation</option>
                                                         {% for operation in data.operations %}
                                                           <option value="{{ operation }}">{{ operation }}</option>
@@ -110,9 +110,11 @@
                                     {% endfor %}
                                     {% endwith %}
 
+                                    <div class="row"><p id="giorgi"></p></div>
+
                                     <div class="row text-center" style="margin-top: 1%">
                                         <div class="col-md-12">
-                                            <button type="submit" class="btn btn-primary text-center">Calculate</button>
+                                            <button type="submit" id="calculateButton" class="btn btn-primary text-center">Calculate</button>
                                         </div>
                                     </div>
 
