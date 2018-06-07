@@ -33,22 +33,28 @@ for (var i=1; i <= parseInt(amount); i++){
 }
 
 
-/* Sum should be 1 */
-weightList = [0];
-sum = 0;
+/* BEGIN: Sum should be 1 */
+$("#calculateButton").attr("disabled", "");
 
 function sumUp() {
+  sum = 0;
+  weightList = [];
+
   for (var i=1; i<=parseInt(amount); i++){
     if ($("#weight"+i).val() != null) {
       weightList.push($("#weight"+i).val());
     }
   }
-  return weightList.reduce(function(acc, val) { return acc + val; });
+  sum = eval(weightList.join('+'));
+  console.log(sum);
 }
 
-$("#weight2").change(console.log(sumUp()));
+for (var i=1; i<= parseInt(amount); i++){
+  $("#weight"+i).change(function(){sumUp();});
+}
 
-$("#calculateButton").attr("disabled", "");
+/* END: Sum should be 1 */
+
 
 /* BEGIN: ORDER Data_TABLE by its value */
 if(window.location.pathname == "/hdi/view/"){
