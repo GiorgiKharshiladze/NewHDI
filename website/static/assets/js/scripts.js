@@ -60,19 +60,19 @@ function sumUp() {
 
 /* BEGIN: validation */
 function validation(){
+
+  // indicator and weight validation
   for (var i=1; i<=parseInt(amount); i++){
     if ($("#indicator"+i).val() == null || $("#weight"+i).val() == null) {
       $("#calculateButton").attr("disabled", "");
     }
     else {
-      $("#calculateButton").removeAttr("disabled");
-      $("#validSpace").html('');
+        $("#calculateButton").removeAttr("disabled");
+        $("#validSpace").html('');
     }
-
   }
 }
 /* END: validation */
-
 for (var i=1; i<= parseInt(amount); i++){
   $("#weight"+i).change(function(){sumUp();validation();});
   $("#indicator"+i).change(function(){validation();});

@@ -107,7 +107,7 @@
                                         {% if forloop.counter|slugify < request.GET.amount %}
                                             <div class="row text-center" style="margin-top: 0.5%;">
                                                 <div class="col-md-12">
-                                                    <select class="select2 form-control col-md-8" name="operation{{ forloop.counter }}" id="operation{{ forloop.counter }}">
+                                                    <select class="select2 form-control col-md-8" name="operation{{ forloop.counter }}" id="operation{{ forloop.counter }}" required="">
                                                         <option selected="" disabled="">Mathematical Operation</option>
                                                         {% for operation in data.operations %}
                                                           <option value="{{ operation }}">{{ operation }}</option>
