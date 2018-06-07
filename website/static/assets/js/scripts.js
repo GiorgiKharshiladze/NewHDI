@@ -26,13 +26,18 @@ function createFormula() {
 }
 /* END: Choose Amount for creating formula */
 
-for (var i=1; i<=5; i++){
-  for(var j=1; j<=99; j++) {
+for (var i=1; i <= parseInt(amount); i++){
+  for(var j=1; j<=100; j++) {
     $("#weight"+i).append("<option value='"+j/100+"'>"+j+"%</option>");
   }
 }
 
-
+for (var i=1; i<= parseInt(amount); i++){
+  $("#weight"+i).on("change", function() {
+    console.log(i);
+    // console.log($("#weight"+i).val());
+  });
+}
 
 /* BEGIN: ORDER Data_TABLE by its value */
 if(window.location.pathname == "/hdi/view/"){
