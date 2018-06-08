@@ -57,7 +57,7 @@ def getCleanData(id, year):
 
     for country in countries.values():
         country = clean(country)
-        if country['value']:
+        if country['value'] != None:
             country['index'] = calculate(country['value'], maximum, minimum, id)
         else:
             country['index'] = None
