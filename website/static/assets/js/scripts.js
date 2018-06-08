@@ -8,6 +8,20 @@
   WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR JAVASCRIPT CODE PLEASE CONSIDER WRITING YOUR SCRIPT HERE.  */
 })(window);
 
+// Helper for current date
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+
+if(dd<10) {
+    dd = '0'+dd
+} 
+
+if(mm<10) {
+    mm = '0'+mm
+}
+
 /* BEGIN: Choose Amount for creating formula */
 if ($("#chooseAmount").val() == null) {
 		$("#createButton").attr("disabled", "");
@@ -89,14 +103,29 @@ if(window.location.pathname == "/hdi/view/"){
   // $('#data_table').DataTable( {
   //     "order": [[ parseInt(amount)+1, "desc" ]]
   // } );
+  
+  var title = "MyHDI_Ranking: "+mm+"."+dd+"."+yyyy;
   $('#data_table').DataTable({
         "order": [[ parseInt(amount)+1, "desc" ]],
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+          'copy',
+          {
+            'extend': 'csv',
+            'title' : title
+          },
+          {
+            'extend': 'excel',
+            'title' : title
+          },
+          {
+            'extend': 'pdf',
+            'title' : title
+          },
+          'print'
         ]
     });
-    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary text-right');
+    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary');
 
 }
 /* END: ORDER Data_TABLE by its value */
