@@ -105,10 +105,24 @@ if(window.location.pathname == "/hdi/view/"){
   // } );
   
   var title = "MyHDI_Ranking: "+mm+"."+dd+"."+yyyy;
-  $('#data_table').DataTable({
+  var table = $('#data_table').DataTable({
         "order": [[ parseInt(amount)+1, "desc" ]],
-        dom: 'Bfrtip',
+        "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+        dom: "<'ui grid'"+
+                 "<'row'"+
+                    "<'col-md-6'B>"+
+                    "<'col-md-6'f>"+
+                 ">"+
+                 "<'row dt-table'"+
+                    "<'col-md-12'tr>"+
+                 ">"+
+                 "<'row'"+
+                    "<'col-md-6'i>"+
+                    "<'col-md-6'p>"+
+                 ">"+
+              ">",
         buttons: [
+          'pageLength',
           'copy',
           {
             'extend': 'csv',
@@ -125,7 +139,7 @@ if(window.location.pathname == "/hdi/view/"){
           'print'
         ]
     });
-    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary');
+  $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-info');
 
 }
 /* END: ORDER Data_TABLE by its value */
