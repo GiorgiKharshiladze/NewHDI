@@ -83,9 +83,9 @@ for (var i=1; i<= parseInt(amount); i++){
 
 /* END: Sum should be 1 */
 
-
 /* BEGIN: ORDER Data_TABLE by its value */
 if(window.location.pathname == "/hdi/view/"){
+
   // $('#data_table').DataTable( {
   //     "order": [[ parseInt(amount)+1, "desc" ]]
   // } );
@@ -96,7 +96,8 @@ if(window.location.pathname == "/hdi/view/"){
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
     });
-    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary mr-1');
+    $('.buttons-copy, .buttons-csv, .buttons-print, .buttons-pdf, .buttons-excel').addClass('btn btn-primary text-right');
+
 }
 /* END: ORDER Data_TABLE by its value */
 
