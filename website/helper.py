@@ -52,7 +52,7 @@ def handleData(request, year, ids, coefs, opers):
     data = onlyAvailable(data, ids)
 
     # SORT CAN BE DONE IN THE FRONTEND
-    # data = sortFormat(data) 
+    # data = sortFormat(data)
 
     return data
 

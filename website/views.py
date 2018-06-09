@@ -52,7 +52,6 @@ def view_hdi(request):
     
 
     # dump = json.dumps({"result": data['result']})
-
     # return HttpResponse(dump, content_type='application/json')
     return render(request, "pages/view_hdi.html", { "data": data })
 
