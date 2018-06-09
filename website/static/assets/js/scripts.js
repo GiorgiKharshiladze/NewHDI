@@ -51,34 +51,31 @@ for (var i=1; i <= parseInt(amount); i++){
 $("#calculateButton").attr("disabled", "");
 $("#validSpace").html('<div class="alert alert-info mb-2" role="alert">All fields are required</div>');
 
-/* BEGIN: Sum should be 1 */
-function sumUp() {
+
+/* BEGIN: validation */
+function validation(){
   sum = 0;
   weightList = [];
 
+  // indicator and weight validation
   for (var i=1; i<=parseInt(amount); i++){
     if ($("#weight"+i).val() != null) {
       weightList.push($("#weight"+i).val());
     }
   }
   sum = eval(weightList.join('+'));
-  if (sum == 1) {
-    $("#calculateButton").removeAttr("disabled");
-    $("#alertSpace").html('');
-  }
-  else {
-    $("#calculateButton").attr("disabled", "");
-    $("#alertSpace").html('<div class="alert alert-primary mb-2" role="alert">Weights total should be 100%, current total = '+Math.round(sum * 10000)/100+'%</div>');
-  }
-}
 
-/* BEGIN: validation */
-function validation(){
+  console.log(sum);
 
-  // indicator and weight validation
   for (var i=1; i<=parseInt(amount); i++){
-    if ($("#indicator"+i).val() == null || $("#weight"+i).val() == null) {
+    if ($("#indicator"+i).val() == null || $("#weight"+i).val() == null || sum != 1) {
       $("#calculateButton").attr("disabled", "");
+      if (sum != 1){
+      $("#alertSpace").html('<div class="alert alert-primary mb-2" role="alert">Weights total should be 100%, current total = '+Math.round(sum * 10000)/100+'%</div>');
+      }
+      else {
+        $("#alertSpace").html('');
+      }
     }
     else {
         $("#calculateButton").removeAttr("disabled");
@@ -88,14 +85,13 @@ function validation(){
 }
 /* END: validation */
 for (var i=1; i<= parseInt(amount); i++){
-  $("#weight"+i).change(function(){sumUp();validation();});
+  $("#weight"+i).change(function(){validation();});
   $("#indicator"+i).change(function(){validation();});
   if (i < parseInt(amount)){
   $("#operation"+i).change(function(){validation();});
   }
 }
 
-/* END: Sum should be 1 */
 
 /* BEGIN: ORDER Data_TABLE by its value */
 if(window.location.pathname == "/hdi/view/"){
