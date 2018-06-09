@@ -47,11 +47,7 @@ for (var i=1; i <= parseInt(amount); i++){
 }
 
 
-
 $("#calculateButton").attr("disabled", "");
-$("#validSpace").html('<div class="alert alert-info mb-2" role="alert">All fields are required</div>');
-
-
 /* BEGIN: validation */
 function validation(){
   sum = 0;
@@ -65,13 +61,14 @@ function validation(){
   }
   sum = eval(weightList.join('+'));
 
-  console.log(sum);
-
   for (var i=1; i<=parseInt(amount); i++){
     if ($("#indicator"+i).val() == null || $("#weight"+i).val() == null || sum != 1) {
+      $("#validSpace").html('<div class="alert alert-info mb-2" role="alert">All fields are required</div>');
       $("#calculateButton").attr("disabled", "");
       if (sum != 1){
-      $("#alertSpace").html('<div class="alert alert-primary mb-2" role="alert">Weights total should be 100%, current total = '+Math.round(sum * 10000)/100+'%</div>');
+      (sum == undefined) ? sum = 0 : false;
+
+      $("#alertSpace").html('<div class="alert alert-primary mb-2" role="alert">Weights total should be 100%, current total = '+ Math.round(sum * 10000)/100+'%</div>');
       }
       else {
         $("#alertSpace").html('');
