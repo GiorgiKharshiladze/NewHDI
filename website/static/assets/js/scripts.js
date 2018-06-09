@@ -63,15 +63,16 @@ function validation(){
 
   for (var i=1; i<=parseInt(amount); i++){
     if ($("#indicator"+i).val() == null || $("#weight"+i).val() == null || sum != 1) {
-      $("#validSpace").html('<div class="alert alert-info mb-2" role="alert">All fields are required</div>');
+      $("#validSpace").html('<div class="alert alert-primary mb-2" role="alert"><ul><li id="alertOne"></li><li id="alertTwo"></li></ul></div>');
+
+      $("#alertOne").html("All fields are required");
       $("#calculateButton").attr("disabled", "");
       if (sum != 1){
       (sum == undefined) ? sum = 0 : false;
-
-      $("#alertSpace").html('<div class="alert alert-primary mb-2" role="alert">Weights total should be 100%, current total = '+ Math.round(sum * 10000)/100+'%</div>');
+      $("#alertTwo").html('Weights total should be 100%, current total = '+ Math.round(sum * 10000)/100+'%');
       }
       else {
-        $("#alertSpace").html('');
+        $("#alertTwo").hide();
       }
     }
     else {
