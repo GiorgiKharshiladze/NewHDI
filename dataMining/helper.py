@@ -133,6 +133,6 @@ def getFormatedUNDP(file_name):
     for col in df.columns[::-1]:
         my_undp[col] = {}
         for country in country_list:
-            my_undp[col][country] = df.loc[country, col]
+            my_undp[col][country] = int(df.loc[country, col])
 
     return my_undp

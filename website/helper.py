@@ -107,9 +107,12 @@ def sortFormat(data):
 
 def setUNDP(request, data, year):
 
-    url = "http://" + request.get_host() + "/api/undp/"+getUNDPYear(request, year)
+    my_url = "http://" + request.get_host() + "/api/undp/"+getUNDPYear(request, year)
 
-    return url
+    with urllib.request.urlopen(my_url) as url:
+        result = json.loads(url.read().decode())['result']
+
+    return result
 
 def getUNDPYear(request, year):
     
