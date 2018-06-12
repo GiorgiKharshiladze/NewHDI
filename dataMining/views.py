@@ -28,25 +28,24 @@ def preMine(request):
 
 def getIndicator(request, id, year):
 
-	data = getCleanData(id, year)
+	try:
+		data = getCleanData(id, year)
+	except:
+		data = False
 
-	if data:
-		dump = json.dumps({"result": data})
-	else:
-		dump = json.dumps({"result": False}) # No data available
-
+	dump = json.dumps({"result": data})
 
 	# return render(request, "index.html", {"data": data})
 	return HttpResponse(dump, content_type='application/json')
 
 def getValue(request, id, year, my_weight):
 
-	data = getInfo(id, year, my_weight)
+	try:
+		data = getInfo(id, year, my_weight)
+	except:
+		data = False
 
-	if data:
-		dump = json.dumps({"result": data})
-	else:
-		dump = json.dumps({"result": False})
+	dump = json.dumps({"result": data})
 
 	return HttpResponse(dump, content_type='application/json')
 
