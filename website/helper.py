@@ -50,7 +50,7 @@ def handleData(request, year, ids, coefs, opers):
     data = beautify(data, ids, coefs, opers)
     data = onlyAvailable(data, ids)
     data = sortFormat(data)
-    print(setUNDP(request, data, year))
+    data = setUNDP(request, data, year)
 
     return data
 
@@ -112,7 +112,13 @@ def setUNDP(request, data, year):
     with urllib.request.urlopen(my_url) as url:
         result = json.loads(url.read().decode())['result']
 
-    return result
+        for key, country in data.items():
+            try:
+                country['undp'] = result[key]
+            except:
+                country['undp'] = "N/A"
+
+    return data
 
 def getUNDPYear(request, year):
     
