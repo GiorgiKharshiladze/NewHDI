@@ -50,9 +50,9 @@ def view_hdi(request):
 
     data['result'] = handleData(request, data['year'], data['indicators'], data['weights'], data['operations'])
 
-    # dump = json.dumps({"result": data['result']})
-    # return HttpResponse(dump, content_type='application/json')
-    return render(request, "pages/view_hdi.html", { "data": data })
+    dump = json.dumps({"result": data['result']})
+    return HttpResponse(dump, content_type='application/json')
+    # return render(request, "pages/view_hdi.html", { "data": data })
 
 def api_data_dir(request):
     data = {}
