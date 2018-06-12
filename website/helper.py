@@ -91,7 +91,6 @@ def onlyAvailable(data, ids):
     return data
 
 def sortFormat(data):
-    print(data)
     country_keys = [key for key in data.keys()]
     country_vals = [country['final'] for country in data.values()]
     country_hdis = list(zip(country_keys, country_vals))

@@ -94,25 +94,25 @@
                                 <table class="table table-striped table-bordered file-export" id="data_table">
                                   <thead>
                                     <tr>
+                                      <th>My HDI</th>
                                       <th>Country</th>
                                       {% for name in data.indicatorNames %}
                                       <th>{{ name }}</th>
                                       {% endfor %}
-                                      <th>My HDI</th>
-                                      <th>My HDI rank</th>
+                                      <th>My HDI Rank</th>
                                     </tr>
                                   </thead>
                                   <tbody>
                                     {% for key, country in data.result.items %}
                                     <tr>
+                                      <td>{{ country.final|floatformat:4|intcomma }}</td>
                                       <td>{{ country.name }}</td>
                                       {% if country.id_0 %}<td>{{ country.id_0.value|floatformat:2|intcomma }}</td>{% endif %}
                                       {% if country.id_1 %}<td>{{ country.id_1.value|floatformat:2|intcomma }}</td>{% endif %}
                                       {% if country.id_2 %}<td>{{ country.id_2.value|floatformat:2|intcomma }}</td>{% endif %}
                                       {% if country.id_3 %}<td>{{ country.id_3.value|floatformat:2|intcomma }}</td>{% endif %}
                                       {% if country.id_4 %}<td>{{ country.id_4.value|floatformat:2|intcomma }}</td>{% endif %}
-                                      <td>{{ country.final|floatformat:4|intcomma }}</td>
-                                      <td>1</td>
+                                      <td>{{ country.rank }}</td>
                                     </tr>
                                     {% endfor %}
                                   </tbody>
