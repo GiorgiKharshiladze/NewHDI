@@ -9,7 +9,6 @@ from dataMining.models import Indicator
 # ==========================
 # IMPORTS FROM DATA MINING
 # ==========================
-
 def checkList(urls, year):
 #   Helper for getRecentOfAll
     for url in urls:
@@ -50,9 +49,7 @@ def handleData(request, year, ids, coefs, opers):
 
     data = beautify(data, ids, coefs, opers)
     data = onlyAvailable(data, ids)
-
-    # SORT CAN BE DONE IN THE FRONTEND
-    # data = sortFormat(data)
+    data = sortFormat(data)
 
     return data
 
@@ -94,15 +91,19 @@ def onlyAvailable(data, ids):
     return data
 
 def sortFormat(data):
+    print(data)
+    country_keys = [key for key in data.keys()]
+    country_vals = [country['final'] for country in data.values()]
+    country_hdis = list(zip(country_keys, country_vals))
 
-    newData = []
+    sorted_ranks = sorted(country_hdis, key=lambda tup: tup[1], reverse=True)
 
-    sorted_keys = sorted((value['final'], key) for (key,value) in data.items())
+    for key, country in data.items():
+        for item in sorted_ranks:
+            if key == item[0]:
+                country['rank'] = sorted_ranks.index(item) + 1
 
-    for i in sorted_keys:
-        newData.insert(0, data[i[1]])
-
-    return newData
+    return data
 
 def getIndicatorNames(indicators):
 

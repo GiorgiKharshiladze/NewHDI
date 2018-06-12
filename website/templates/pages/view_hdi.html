@@ -99,6 +99,7 @@
                                       <th>{{ name }}</th>
                                       {% endfor %}
                                       <th>My HDI</th>
+                                      <th>My HDI rank</th>
                                     </tr>
                                   </thead>
                                   <tbody>
@@ -111,6 +112,7 @@
                                       {% if country.id_3 %}<td>{{ country.id_3.value|floatformat:2|intcomma }}</td>{% endif %}
                                       {% if country.id_4 %}<td>{{ country.id_4.value|floatformat:2|intcomma }}</td>{% endif %}
                                       <td>{{ country.final|floatformat:4|intcomma }}</td>
+                                      <td>1</td>
                                     </tr>
                                     {% endfor %}
                                   </tbody>
