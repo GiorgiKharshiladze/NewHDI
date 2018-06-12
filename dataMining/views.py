@@ -55,7 +55,7 @@ def getUNDP(request):
 	url = request.build_absolute_uri().replace(request.get_full_path(), "")
 
 
-	data = getUNDP_JSON(url + static('undp.csv'))
+	data = getFormatedUNDP(url + static('undp_formated.csv'))
 
 	if data:
 		dump = json.dumps({"result": data})
