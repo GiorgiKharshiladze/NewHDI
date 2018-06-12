@@ -50,6 +50,7 @@ def handleData(request, year, ids, coefs, opers):
     data = beautify(data, ids, coefs, opers)
     data = onlyAvailable(data, ids)
     data = sortFormat(data)
+    print(setUNDP(request, data, year))
 
     return data
 
@@ -103,6 +104,25 @@ def sortFormat(data):
                 country['rank'] = sorted_ranks.index(item) + 1
 
     return data
+
+def setUNDP(request, data, year):
+
+    url = "http://" + request.get_host() + "/api/undp/"+getUNDPYear(request, year)
+
+    return url
+
+def getUNDPYear(request, year):
+    
+    my_url = "http://" + request.get_host() + "/api/undp/"
+
+    my_year=year
+    while my_year >= 1990:
+        with urllib.request.urlopen(my_url+str(my_year)) as url:
+            result = json.loads(url.read().decode())['result']
+            if result:
+                return str(my_year)
+        my_year -= 1
+    return False
 
 def getIndicatorNames(indicators):
 
