@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 # local improts
 from .helper import *
@@ -48,6 +49,21 @@ def getValue(request, id, year, my_weight):
 		dump = json.dumps({"result": False})
 
 	return HttpResponse(dump, content_type='application/json')
+
+def getUNDP(request):
+
+	url = request.build_absolute_uri().replace(request.get_full_path(), "")
+
+
+	data = getUNDP_JSON(url + static('undp.csv'))
+
+	if data:
+		dump = json.dumps({"result": data})
+	else:
+		dump = json.dumps({"result": False})
+
+	return HttpResponse(dump, content_type='application/json')
+
 
 @api_view(['GET'])
 def getLocalIds(request):

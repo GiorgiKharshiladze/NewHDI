@@ -3,6 +3,7 @@ import json
 import sys
 from copy import deepcopy
 from dataMining.models import Indicator
+import numpy as np
 
 BASE_URL = "http://api.worldbank.org/v2/"
 
@@ -130,7 +131,8 @@ def getRank(series, country):
 
     return df.loc[country, 'rank']
 
-def getUNDP(file_name):
+def getUNDP_JSON(file_name):
+
     my_undp = {}
     df = pd.read_csv(file_name, index_col="Country")
     df = df.fillna(0)
@@ -140,7 +142,9 @@ def getUNDP(file_name):
     for country in country_list:
         my_undp[country] = {}
         for col in df.columns:
-            my_undp[country][int(col)] = getRank(df[col], country)
+            my_undp[country][col] = np.asscalar(pd.to_numeric(getRank(df[col], country), downcast='integer'))
+    # print(my_undp)
+    return my_undp
     #         my_undp[country][col] = {}
     #         my_undp[country][col]['value'] = df[col][country]
     #         my_undp[country][col]['rank'] = getRank(df[col], country)
