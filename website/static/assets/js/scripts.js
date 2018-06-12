@@ -103,6 +103,7 @@ if(window.location.pathname == "/hdi/view/"){
   var title = "MyHDI_Ranking: "+mm+"."+dd+"."+yyyy;
   var table = $('#data_table').DataTable({
         // "order": [[ parseInt(amount)+1, "desc" ]],
+        responsive: true,
         "order": [[ 0, "desc" ]], // ordered by the first column
         "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
         dom: "<'ui grid'"+
