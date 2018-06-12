@@ -4,11 +4,12 @@ from rest_framework.urlpatterns import format_suffix_patterns
 
 
 urlpatterns = [
+	url(r'^undp/$', views.getUNDP, name='getUNDP'), # also fits the lower patters, so be careful
+	url(r'^undp/(?P<year>[0-9]{4})/$', views.getUNDP_Year, name='getUNDP_Year'),
 	url(r'^(?P<id>[\w\-.]+)/(?P<year>[0-9]{4})/$', views.getIndicator, name='getIndicator'),
 	url(r'^(?P<id>[\w\-.]+)/(?P<year>[0-9]{4})/(?P<my_weight>[+-]?([0-9]*[.])?[0-9]+)$', views.getValue, name='getValue'),
 	url(r'^id/all/$', views.getLocalIds, name='getLocalIds'),
 	url(r'^id/(?P<my_id>[\w\-.]+)/$', views.getLocal, name='getLocal'),
-	url(r'^undp/$', views.getUNDP, name='getUNDP'),
 	# Less Important
 	url(r'^result/$', views.preMine, name='result'),
 ]

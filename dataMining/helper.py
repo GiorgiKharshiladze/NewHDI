@@ -130,7 +130,7 @@ def getFormatedUNDP(file_name):
 
     country_list = list(df.index)
 
-    for col in df.columns:
+    for col in df.columns[::-1]:
         my_undp[col] = {}
         for country in country_list:
             my_undp[col][country] = df.loc[country, col]

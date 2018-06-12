@@ -54,13 +54,25 @@ def getUNDP(request):
 
 	url = request.build_absolute_uri().replace(request.get_full_path(), "")
 
+	try:
+		data = getFormatedUNDP(url + static('undp_formated.csv'))
+	except:
+		data = False
 
-	data = getFormatedUNDP(url + static('undp_formated.csv'))
+	dump = json.dumps({"result": data})
 
-	if data:
-		dump = json.dumps({"result": data})
-	else:
-		dump = json.dumps({"result": False})
+	return HttpResponse(dump, content_type='application/json')
+
+def getUNDP_Year(request, year):
+
+	url = request.build_absolute_uri().replace(request.get_full_path(), "")
+	
+	try:
+		data = getFormatedUNDP(url + static('undp_formated.csv'))[year]
+	except:
+		data = False
+
+	dump = json.dumps({"result": data})
 
 	return HttpResponse(dump, content_type='application/json')
 
