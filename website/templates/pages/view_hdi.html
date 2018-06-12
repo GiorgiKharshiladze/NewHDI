@@ -94,13 +94,13 @@
                                 <table class="table table-striped table-bordered file-export" id="data_table">
                                   <thead>
                                     <tr>
-                                      <th>My HDI</th>
-                                      <th>Country</th>
+                                      <th data-priority="1">My HDI</th>
+                                      <th data-priority="2">Country</th>
                                       {% for name in data.indicatorNames %}
                                       <th>{{ name }}</th>
                                       {% endfor %}
-                                      <th>My HDI Rank</th>
-                                      <th>UNDP HDI Rank</th>
+                                      <th data-priority="3">My HDI Rank</th>
+                                      <th data-priority="4">UNDP HDI Rank</th>
                                     </tr>
                                   </thead>
                                   <tbody>
