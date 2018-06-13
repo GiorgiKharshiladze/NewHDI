@@ -40,6 +40,7 @@ def view_hdi(request):
     data['amount'] = int(request.POST.get('amount'))
     data['variables'] = variables[:data['amount']] # trims the same amount of variables
     data['visual'] = ""
+    data['js_operations'] = ""
 
     for i in range(int(data['amount'])):
         data['indicators'].append(request.POST.get('indicator' + str(i+1)))
@@ -50,7 +51,10 @@ def view_hdi(request):
     data['indicatorNames'] = getIndicatorNames(data['indicators'])
 
     for i in range(len(data['indicators'])):
-        data['visual'] += "<tr><th scope='row'>"+data['variables'][i]+"</th><td>"+data['indicators'][i]+"</td><td>"+data['indicatorNames'][i]+"</td><td>"+data['weights'][i]+"</td></tr>"
+        data['visual'] += "<tr><th scope='row'>"+data['variables'][i]+"</th><td>"+data['indicators'][i]+"</td><td>"+data['indicatorNames'][i]+"</td><td class='weight'>"+data['weights'][i]+"</td></tr>"
+
+    for i in data['operations']:
+        data['js_operations'] += i.replace("*","×") 
 
     data['year'] = getRecentOfAll(data['indicators'])
 

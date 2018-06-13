@@ -99,7 +99,21 @@ if(window.location.pathname == "/hdi/view/"){
   // $('#data_table').DataTable( {
   //     "order": [[ parseInt(amount)+1, "desc" ]]
   // } );
-  $("#formula")
+  var formula = "<b><h1><i>f(x) = ";
+  var letters = ['a', 'b', 'c', 'd', 'e']
+  var weights = []
+  $('#formula_table .weight').each(function(){
+    weights.push($(this).html());
+  });
+
+  for (var i=0; i<=operations.length; i++){
+    formula += letters[i] + "<sup> ("+ weights[i] +")</sup> ";
+    if (i != operations.length){
+      formula += operations[i] + " ";
+    }
+  }
+
+  $("#formula").html(formula + "</i></h1></b>");
   
   var title = "MyHDI_Ranking: "+mm+"."+dd+"."+yyyy;
   var table = $('#data_table').DataTable({
