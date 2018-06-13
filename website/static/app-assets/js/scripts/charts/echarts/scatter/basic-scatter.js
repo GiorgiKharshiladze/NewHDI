@@ -62,14 +62,6 @@ $(window).on("load", function(){
             // ------------------------------
             chartOptions = {
 
-                // Setup grid
-                // grid: {
-                //     x: 40,
-                //     x2: 40,
-                //     y: 45,
-                //     y2: 25
-                // },
-
                 // Add tooltip
                 tooltip : {
                     trigger: 'axis',
@@ -77,15 +69,6 @@ $(window).on("load", function(){
                     formatter : function (params) {
                             return params[0].value[0] + '<br>' + params[0].seriesName + ' : ' + params[0].value[1] + '<br>' + params[1].seriesName + ' : ' + params[1].value[1];
                     }
-                    // },
-                    // axisPointer:{
-                    //     show: true,
-                    //     type : 'cross',
-                    //     lineStyle: {
-                    //         type : 'dashed',
-                    //         width : 1
-                    //     }
-                    // }
                 },
 
                 // Add legend
@@ -94,7 +77,7 @@ $(window).on("load", function(){
                 },
 
                 // Add custom colors
-                color: ['#1DE9B6', '#E040FB'],
+                color: ['#1EC481', '#FF394F'],
 
                 // Horizontal axis
                 xAxis : [
