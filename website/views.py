@@ -32,11 +32,14 @@ def create_hdi(request):
 def view_hdi(request):
 
     data = {}
+    variables = ['a', 'b', 'c', 'd', 'e']
     data['page_title'] = "View Your Results"
     data['indicators'] = []
     data['weights'] = []
     data['operations'] = []
     data['amount'] = int(request.POST.get('amount'))
+    data['variables'] = variables[:data['amount']] # trims the same amount of variables
+    data['visual'] = ""
 
     for i in range(int(data['amount'])):
         data['indicators'].append(request.POST.get('indicator' + str(i+1)))
@@ -45,6 +48,9 @@ def view_hdi(request):
             data['operations'].append(request.POST.get('operation' + str(i+1)))
 
     data['indicatorNames'] = getIndicatorNames(data['indicators'])
+
+    for i in range(len(data['indicators'])):
+        data['visual'] += "<tr><th scope='row'>"+data['variables'][i]+"</th><td>"+data['indicators'][i]+"</td><td>"+data['indicatorNames'][i]+"</td><td>"+data['weights'][i]+"</td></tr>"
 
     data['year'] = getRecentOfAll(data['indicators'])
 

@@ -99,6 +99,7 @@ if(window.location.pathname == "/hdi/view/"){
   // $('#data_table').DataTable( {
   //     "order": [[ parseInt(amount)+1, "desc" ]]
   // } );
+  $("#formula")
   
   var title = "MyHDI_Ranking: "+mm+"."+dd+"."+yyyy;
   var table = $('#data_table').DataTable({
