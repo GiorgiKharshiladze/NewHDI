@@ -116,6 +116,8 @@ def customHDI(request):
     # Handle form data here
     data = handleData(request, year, ids, coefs, ['*','*','*','*'])
 
+    print(data)
+
     # dump = json.dumps({"result": data})
     # return HttpResponse(dump, content_type='application/json')
     return render(request, "custom.html", {"id_one":id_one,"id_two":id_two,"id_three":id_three,"id_four":id_four,"id_five":id_five, "coef_one":coef_one, "coef_two":coef_two, "coef_three":coef_three, "coef_four":coef_four, "coef_five":coef_five,"data":data})
