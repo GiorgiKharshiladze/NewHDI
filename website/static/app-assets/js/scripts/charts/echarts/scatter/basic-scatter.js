@@ -8,7 +8,7 @@
     Author URL: http://www.themeforest.net/user/pixinvent
 ==========================================================================================*/
 
-var my_hdis = [], undps = [], countries = [];
+var my_hdis = [], undps = [], countries = [], diffs;
 
 $('#data_table .country').each(function(){
     countries.push($(this).html());
@@ -20,11 +20,14 @@ $('#data_table .undp_hdi').each(function(){
     undps.push(parseInt($(this).html()));
 });
 
-var data_my_hdis = countries.map(function(e, i) {
-  return [e, my_hdis[i]];
-});
-var data_undps = countries.map(function(e, i) {
-  return [e, undps[i]];
+// var data_my_hdis = countries.map(function(e, i) {
+//   return [e, my_hdis[i]];
+// });
+// var data_undps = countries.map(function(e, i) {
+//   return [e, undps[i]];
+// });
+var diffs = countries.map(function(e, i){
+    return [e, Math.abs(undps[i]-my_hdis[i])];
 });
 
 // Basic scatter chart
@@ -48,7 +51,8 @@ $(window).on("load", function(){
     require(
         [
             'echarts',
-            'echarts/chart/scatter'
+            'echarts/chart/scatter',
+            'echarts/chart/line'
         ],
 
 
@@ -67,17 +71,17 @@ $(window).on("load", function(){
                     trigger: 'axis',
                     showDelay : 0,
                     formatter : function (params) {
-                            return params[0].value[0] + '<br>' + params[0].seriesName + ' : ' + params[0].value[1] + '<br>' + params[1].seriesName + ' : ' + params[1].value[1];
+                            return params[2].value[0] + '<br>' + params[0].seriesName + ' : ' + params[0].value + '<br>' + params[1].seriesName + ' : ' + params[1].value + '<br>' + params[2].seriesName + ' : ' + params[2].value[1];
                     }
                 },
 
                 // Add legend
                 legend: {
-                    data: ['My HDI', 'UNDP']
+                    data: ['My HDI', 'UNDP', 'Difference']
                 },
 
                 // Add custom colors
-                color: ['#1EC481', '#FF394F'],
+                color: ['#1EC481', '#FF394F', '#000000'],
 
                 // Horizontal axis
                 xAxis : [
@@ -101,13 +105,23 @@ $(window).on("load", function(){
                  series : [
                 {
                     name:'My HDI',
-                    type:'scatter',
-                    data: data_my_hdis,
+                    type:'line',
+                    data: my_hdis,
+                    smooth: true,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
                 },
                 {
                     name:'UNDP',
+                    type:'line',
+                    data: undps,
+                    smooth: true,
+                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                },
+                {
+                    name:'Difference',
                     type:'scatter',
-                    data: data_undps,
+                    data: diffs,
+                    smooth: true,
                 }
             ]
             };
