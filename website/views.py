@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .helper import *
-from .models import Interaction
 import urllib.request
-from ast import literal_eval
 
 # Create your views here.
 
@@ -11,6 +9,7 @@ def index(request):
     
     data = {}
     data['page_title'] = "New HDI"
+    data['count_interactions'] = getInteractions()
 
     return render(request, "pages/main.html", { "data": data })
 
@@ -19,6 +18,7 @@ def create_hdi(request):
     data = {}
     weights = []
     data['page_title'] = "Custom HDI"
+    data['count_interactions'] = getInteractions()
 
     url = "http://" + request.get_host() + "/api/id/all/?format=json"
 
@@ -34,8 +34,9 @@ def create_hdi(request):
 def view_hdi(request):
 
     data = {}
-    variables = ['a', 'b', 'c', 'd', 'e']
     data['page_title'] = "View Your Results"
+    data['count_interactions'] = getInteractions()
+    variables = ['a', 'b', 'c', 'd', 'e']
     data['indicators'] = []
     data['weights'] = []
     data['operations'] = []
@@ -68,7 +69,11 @@ def view_hdi(request):
 
 def submit_hdi(request):
 
-    data = request.POST.get('page_data')
+    data = {}
+    data['page_data'] = request.POST.get('page_data')
+    data = smaller_json_data(data['page_data'])
+
+    data['count_interactions'] = getInteractions()
     # data = literal_eval(request.POST.get('page_data'))
 
     interaction = Interaction(data=data, category="HDI")
@@ -76,12 +81,13 @@ def submit_hdi(request):
 
     # dump = json.dumps({"result": data})
     # return HttpResponse(dump, content_type='application/json')
-    return render(request, "pages/view_hdi.html", { "data": literal_eval(data) })
+    return render(request, "pages/view_hdi.html", { "data": data })
 
 
 def api_data_dir(request):
     data = {}
     data['page_title'] = "Data Directory"
+    data['count_interactions'] = getInteractions()
 
     url = "http://" + request.get_host() + "/api/id/all/?format=json"
     data['indicators'] = requests.get(url=url).json()
@@ -98,10 +104,13 @@ def api_access(request):
     
     data = {}
     data['page_title'] = "API Access"
+    data['count_interactions'] = getInteractions()
 
     return render(request, "pages/api_access.html", { "data": data })
 
+# ==============================
 #  Testing Views in development
+# ==============================
 def sample(request):
 
     data = {}

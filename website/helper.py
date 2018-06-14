@@ -5,10 +5,22 @@ import json
 from dataMining.helper import validate, BASE_URL, getIndicatorName
 from collections import defaultdict
 from dataMining.models import Indicator
+from website.models import Interaction
+from ast import literal_eval
 
 # ==========================
 # IMPORTS FROM DATA MINING
 # ==========================
+def getInteractions():
+    return Interaction.objects.count()
+
+def smaller_json_data(string_data):
+    data = literal_eval(string_data)
+
+    del data['count_interactions']
+
+    return data
+
 def checkList(urls, year):
 #   Helper for getRecentOfAll
     for url in urls:
