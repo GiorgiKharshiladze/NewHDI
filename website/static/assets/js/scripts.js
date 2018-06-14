@@ -120,7 +120,7 @@ if(window.location.pathname == "/hdi/view/"){
         // "order": [[ parseInt(amount)+1, "desc" ]],
         responsive: true,
         "order": [[ 0, "desc" ]], // ordered by the first column
-        "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+        "lengthMenu": [[10, 50, 100, -1], [10, 50, 100, "All"]],
         dom: "<'ui grid'"+
                  "<'row'"+
                     "<'col-md-6'B>"+
