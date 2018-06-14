@@ -94,7 +94,7 @@ for (var i=1; i<= parseInt(amount); i++){
 
 
 /* BEGIN: ORDER Data_TABLE by its value */
-if(window.location.pathname == "/hdi/view/"){
+if(window.location.pathname == "/hdi/view/" || window.location.pathname == "/hdi/submit/"){
 
   // $('#data_table').DataTable( {
   //     "order": [[ parseInt(amount)+1, "desc" ]]

@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .helper import *
 import urllib.request
+from ast import literal_eval
 
 # Create your views here.
 
@@ -63,6 +64,15 @@ def view_hdi(request):
     # dump = json.dumps({"result": data['result']})
     # return HttpResponse(dump, content_type='application/json')
     return render(request, "pages/view_hdi.html", { "data": data })
+
+def submit_hdi(request):
+
+    data = literal_eval(request.POST.get('page_data'))
+
+    # dump = json.dumps({"result": data})
+    # return HttpResponse(dump, content_type='application/json')
+    return render(request, "pages/view_hdi.html", { "data": data })
+
 
 def api_data_dir(request):
     data = {}
