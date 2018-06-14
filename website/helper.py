@@ -71,7 +71,7 @@ def beautify(data, ids, coefs, opers):
             if i == 0:
                 newDict[key]['final'] *= newDict[key]['id_'+str(i)]['post_assign']
             elif i > 0:
-                if opers[i-1] == "*":
+                if opers[i-1] == "×":
                     newDict[key]['final'] *= newDict[key]['id_'+str(i)]['post_assign']
                 elif opers[i-1] == "+":
                     newDict[key]['final'] += newDict[key]['id_'+str(i)]['post_assign']

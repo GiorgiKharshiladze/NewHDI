@@ -25,7 +25,7 @@ def create_hdi(request):
 
     data['indicators'] = requests.get(url=url).json()
     data['weights'] = weights
-    data['operations'] = ['*', '+']
+    data['operations'] = ['×', '+']
 
     return render(request, "pages/create_hdi.html", { "data": data })
 
