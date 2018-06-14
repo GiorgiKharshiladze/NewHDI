@@ -71,8 +71,6 @@ def api_data_dir(request):
     url = "http://" + request.get_host() + "/api/id/all/?format=json"
 
     data['indicators'] = requests.get(url=url).json()
-    for indicator in data['indicators']:
-        indicator['recent'] = getRecentOfAll([indicator['my_id']]) or "Not Available" # List of just one item
 
     data['url'] = "http://" + request.get_host()
 
