@@ -16,7 +16,7 @@ def create_hdi(request):
 
     data = {}
     weights = []
-    data['page_title'] = "Create Your HDI"
+    data['page_title'] = "Custom HDI"
 
     url = "http://" + request.get_host() + "/api/id/all/?format=json"
 
