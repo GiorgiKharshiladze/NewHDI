@@ -57,11 +57,15 @@
                                     </tr>
                                     <tr>
                                       <th scope="row">Type</th>
-                                      {% if indicator.proportional %}
-                                      <td>Higher value means higher development</td>
+                                      {% if indicator.local %}
+                                        <td>{{ indicator.local  }}</td>
                                       {% else %}
-                                      <td>Higher value means lower development</td>
-                                      {% endif%}
+                                        {% if indicator.proportional %}
+                                        <td>Higher value means higher development</td>
+                                        {% else %}
+                                        <td>Higher value means lower development</td>
+                                        {% endif%}
+                                      {% endif %}
                                     </tr>
                                     <tr>
                                       <th scope="row">Source</th>
@@ -71,7 +75,7 @@
                                 </table>
                               </div>
                               <div class="text-center" style="margin-top:2%;">
-                                <a href="{{ data.url }}/api/{{ indicator.my_id }}/2015" target="_blank" class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" data-original-title="API of the most recent data available">Get API</a>
+                                <a href="{{ data.url }}/api/{{ indicator.my_id }}/2015" target="_blank" class="btn btn-outline-info" data-toggle="tooltip" data-placement="bottom" data-original-title="API of 2015 Data">Get API</a>
                               </div>
                           </div>
                         </div>
