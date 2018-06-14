@@ -1,12 +1,13 @@
 {% load staticfiles %}
+{% with request.resolver_match.url_name as my_url %} 
 <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="nav-item {% if request.resolver_match.url_name == 'index' %} active {% endif %} "><a href="{% url 'index' %}"><i class="la la-home"></i><span class="menu-title" data-i18n="">Dashboard</span><span class="badge badge badge-info badge-pill float-right mr-2">1</span></a>
+            <li class="nav-item {% if my_url == 'index' %} active {% endif %} "><a href="{% url 'index' %}"><i class="la la-home"></i><span class="menu-title" data-i18n="">Dashboard</span><span class="badge badge badge-info badge-pill float-right mr-2">1</span></a>
             </li>
             <li class="nav-item"><a href="#"><i class="la la-magic"></i><span class="menu-title" data-i18n="">Create Your Index</span></a>
                 <ul class="menu-content">
-                    <li class="{% if request.resolver_match.url_name == 'create_hdi' %} active {% endif %}"><a class="menu-item" href="{% url 'create_hdi' %}">Custom HDI</a>
+                    <li class="{% if my_url == 'create_hdi' or my_url == 'view_hdi' %} active {% endif %}"><a class="menu-item" href="{% url 'create_hdi' %}">Custom HDI</a>
                     </li>
                     <li><a class="menu-item" href="#">Dynamic HDI</a>
                     </li>
@@ -32,12 +33,13 @@
             </li>
             <li class=" nav-item"><a href="#"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">For Developers</span></a>
                 <ul class="menu-content">
-                    <li class=" nav-item {% if request.resolver_match.url_name == 'api_access' %} active {% endif %} "><a href="{% url 'api_access' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">API Access</span></a>
+                    <li class=" nav-item {% if my_url == 'api_access' %} active {% endif %} "><a href="{% url 'api_access' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">API Access</span></a>
                     </li>
-                    <li class=" nav-item {% if request.resolver_match.url_name == 'api_data_dir' %} active {% endif %} "><a href="{% url 'api_data_dir' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">Data Directory</span></a>
+                    <li class=" nav-item {% if my_url == 'api_data_dir' %} active {% endif %} "><a href="{% url 'api_data_dir' %}"><i class="la la-file-code-o"></i><span class="menu-title" data-i18n="">Data Directory</span></a>
                     </li>
                 </ul>
             </li>
         </ul>
     </div>
 </div>
+{% endwith %}
