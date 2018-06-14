@@ -71,7 +71,7 @@ def api_data_dir(request):
     url = "http://" + request.get_host() + "/api/id/all/?format=json"
     data['indicators'] = requests.get(url=url).json()
 
-    undp = {"id":0, "my_id":"undp", "description":"Most Recent UNDP HDI Data API", "local":"Values are HDI ranks of that year", "source":"UNDP"}
+    undp = {"id":0, "my_id":"undp", "name":"UNDP Human Development Index", "description":"Most Recent United Nations Development Programme - Human Development Index Data", "local":"Values are HDI ranks of that year", "source":"UNDP"}
     data['indicators'].insert(0, undp)
 
     data['url'] = "http://" + request.get_host()
