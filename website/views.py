@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .helper import *
+from .models import Interaction
 import urllib.request
 from ast import literal_eval
 
@@ -67,11 +68,15 @@ def view_hdi(request):
 
 def submit_hdi(request):
 
-    data = literal_eval(request.POST.get('page_data'))
+    data = request.POST.get('page_data')
+    # data = literal_eval(request.POST.get('page_data'))
+
+    interaction = Interaction(data=data, category="HDI")
+    interaction.save()
 
     # dump = json.dumps({"result": data})
     # return HttpResponse(dump, content_type='application/json')
-    return render(request, "pages/view_hdi.html", { "data": data })
+    return render(request, "pages/view_hdi.html", { "data": literal_eval(data) })
 
 
 def api_data_dir(request):
@@ -135,8 +140,6 @@ def customHDI(request):
     
     # Handle form data here
     data = handleData(request, year, ids, coefs, ['*','*','*','*'])
-
-    print(data)
 
     # dump = json.dumps({"result": data})
     # return HttpResponse(dump, content_type='application/json')
