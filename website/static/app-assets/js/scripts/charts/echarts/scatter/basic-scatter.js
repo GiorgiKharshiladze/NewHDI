@@ -92,7 +92,7 @@ $(window).on("load", function(){
                                 return v
                             }
                         },
-                        data : countries
+                        data : undps
                     }
                 ],
                 yAxis : [
@@ -110,19 +110,19 @@ $(window).on("load", function(){
                     smooth: true,
                     itemStyle: {normal: {areaStyle: {type: 'default'}}},
                 },
-                {
-                    name:'UNDP',
-                    type:'line',
-                    data: undps,
-                    smooth: true,
-                    itemStyle: {normal: {areaStyle: {type: 'default'}}},
-                },
-                {
-                    name:'Difference',
-                    type:'scatter',
-                    data: diffs,
-                    smooth: true,
-                }
+                // {
+                //     name:'UNDP',
+                //     type:'scatter',
+                //     data: undps,
+                //     smooth: true,
+                //     itemStyle: {normal: {areaStyle: {type: 'default'}}},
+                // },
+                // {
+                //     name:'Difference',
+                //     type:'scatter',
+                //     data: diffs,
+                //     smooth: true,
+                // }
             ]
             };
 
